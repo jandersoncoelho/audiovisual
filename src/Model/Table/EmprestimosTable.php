@@ -36,11 +36,23 @@ class EmprestimosTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+         $this->hasMany('Ocorrencias', [
+            'foreignKey' => 'idEmprestimo'
+        ]);
+
         $this->belongsToMany('Acessorios', [
             'foreignKey' => 'emprestimo_id',
             'targetForeignKey' => 'acessorio_id',
             'joinTable' => 'emprestimos_acessorios'
         ]);
+
+         $this->belongsToMany('Usuarios', [
+            'foreignKey' => 'emprestimo_id',
+            'targetForeignKey' => 'usuario_id',
+            'joinTable' => 'emprestimos_usuarios'
+        ]);
+
+
     }
 
     /**
@@ -55,19 +67,20 @@ class EmprestimosTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->integer('idAtendente')
-            ->requirePresence('idAtendente', 'create')
-            ->notEmpty('idAtendente');
+       
+            $validator
+            ->requirePresence('nomeAtendente', 'create')
+            ->notEmpty('nomeAtendente');
 
         $validator
-            ->integer('idSolicitante')
-            ->requirePresence('idSolicitante', 'create')
-            ->notEmpty('idSolicitante');
+            ->requirePresence('nomeSolicitante', 'create')
+            ->notEmpty('nomeSolicitante');
 
         $validator
-            ->integer('idEquipamento')
-            ->allowEmpty('idEquipamento');
+            ->allowEmpty('nomeResponsavel');
+
+        $validator
+            ->allowEmpty('numeroPatrimonio');
 
         $validator
             ->allowEmpty('nomeDevolveu');
@@ -79,9 +92,6 @@ class EmprestimosTable extends Table
         $validator
             ->dateTime('dataDevolucao')
             ->allowEmpty('dataDevolucao');
-
-        $validator
-            ->allowEmpty('ocorrencia');
 
         $validator
             ->allowEmpty('situacao');

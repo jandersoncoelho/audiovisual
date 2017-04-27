@@ -7,21 +7,24 @@
         <li><?= $this->Html->link(__('Novo Empréstimo'), ['action' => 'add']) ?></li>
     </ul>
 
-<div class="emprestimos index large-11 medium-9 columns content">
-    <h3><?= __('Empréstimos Pendentes') ?></h3>
+<div class="emprestimos index large-12 medium-9 columns content">
+    <h3><?= __('Empréstimos Finalizados') ?></h3>
     <table cellspacing="0">
         <thead>
-            <tr>  
-                <th scope="col"><?= $this->Paginator->sort('nomeAtendente', array('' => 'Atendente' )) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nomeSolicitante', array('' => 'Solicitante' )) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('numeroPatrimonio', array('' => 'Número Patrimônio' )) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('dataRetirada', array('' => 'Retirada' )) ?></th>
+            <tr>
+             
+                <th scope="col"><?= $this->Paginator->sort('nomeAtendente', array('label' => 'Atendente' )) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('nomeSolicitante', array('label' => 'Solicitante' )) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('numeroPatrimonio', array('label' => 'Número Patrimônio' )) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dataDevolucao', array('label' => 'Devolução' )) ?></th>
                 <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($emprestimos as $emprestimo): 
-            if ($emprestimo->situacao == 'Pendente') { ?>
+            if ($emprestimo->situacao == 'Devolvido') {
+                # code...
+            ?>
             <tr>
               
                 <td><?= h($emprestimo->nomeAtendente) ?></td>
@@ -29,9 +32,7 @@
                 <td><?= h($emprestimo->numeroPatrimonio) ?></td>
                 <td><?= h($emprestimo->dataRetirada) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Devolver'), ['action' => 'finish', $emprestimo->id]) ?>
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $emprestimo->id]) ?>
-                
                 </td>
             </tr>
             <?php } ?>

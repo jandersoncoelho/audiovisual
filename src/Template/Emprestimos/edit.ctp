@@ -9,10 +9,9 @@
     <fieldset>
         <legend><?= __('Editar Empréstimo') ?></legend>
         <?php
-            echo $this->Form->control('idAtendente');
-            echo $this->Form->control('idSolicitante');
-            echo $this->Form->control('idEquipamento');
-            echo $this->Form->control('ocorrencia', ['type'=> 'textarea']);
+            echo $this->Form->control('nomeAtendente', array('label' => 'Nome do Atendente' ));
+            echo $this->Form->control('nomeSolicitante', array('label' => 'Nome do Solicitante' );
+            echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio' );
 
             ?>
 

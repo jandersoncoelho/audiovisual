@@ -9,12 +9,24 @@
     <fieldset>
         <legend><?= __('Novo Empréstimo') ?></legend>
 
-        <?php
+        <?php 
 
-            echo $this->Form->control('idEquipamento');
-            echo $this->Form->control('idSolicitante');
-            echo $this->Form->control('idAtendente', array('type' => 'hidden', 'value'=> $idLogado));
-            echo $this->Form->control('situacao', array('type' => 'hidden', 'value' => 'pendente'));
+        $nomes;
+       $i = 0;
+        foreach ($usuarios as $usuario):
+            $nomes[$i] = strval($usuario);
+        echo strval($nomes[$i]);
+        $i++;
+        
+        endforeach; 
+        //echo strval($usuarios);
+
+        //$user = $usuarios->nome;
+        //echo $usuarios->nome;
+            echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio'));
+            echo $this->form->input('nomeSolicitante', array('type'=>'select', 'options'=> $nomes, 'label'=>'Selecione o Solicitante'));
+            echo $this->Form->control('nomeAtendente', array('type' => 'hidden', 'value'=> $usuarioLogado));
+            echo $this->Form->control('situacao', array('type' => 'hidden', 'value' => 'Pendente'));
             date_default_timezone_set('America/Sao_Paulo');
             $dataRetirada = date('Y-m-d H:i');
             echo $this->Form->control('dataRetirada', array('type' => 'hidden', 'value'=> $dataRetirada));
@@ -26,13 +38,7 @@
 
         <?php
 
-            echo $this->Form->input('acessorios._ids', array('label' => false,
-                                        'div' => false,
-                                        'type' => 'select',
-                                        'multiple'=>'checkbox',
-                                        'legend' => 'false',
-                                        'options' => $acessorios 
-                                                                ));
+            echo $this->Form->input('acessorios._ids', array('label' => false, 'div' => false,'type' => 'select','multiple'=>'checkbox','legend' => 'false'));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Emprestar')) ?>

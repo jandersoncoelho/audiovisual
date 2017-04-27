@@ -24,6 +24,14 @@ class EmprestimosController extends AppController
         $this->set('_serialize', ['emprestimos']);
     }
 
+       public function finalizados()
+    {
+        $emprestimos = $this->paginate($this->Emprestimos);
+
+        $this->set(compact('emprestimos'));
+        $this->set('_serialize', ['emprestimos']);
+    }
+
     /**
      * View method
      *
@@ -34,7 +42,7 @@ class EmprestimosController extends AppController
     public function view($id = null)
     {
         $emprestimo = $this->Emprestimos->get($id, [
-            'contain' => ['Acessorios']
+            'contain' => ['Acessorios', 'Usuarios', 'Ocorrencias']
         ]);
 
         $this->set('emprestimo', $emprestimo);
@@ -47,20 +55,27 @@ class EmprestimosController extends AppController
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
 
-    function autoComplete(){
-        $this->layout = 'ajax';
-        $equipamento = $this->Equipamento->find('all', array(
-                'conditions' =>    array('Equipamento.equipamento LIKE' => $this->data['Equipamento']['equipamento'] . '%'),
-                'order' => array('Equipamento.equipamento'),
-                'fields' => array('equipamento')
-            )
-        );
-        $this->set('equipamento', $equipamentos);
+    public function finish($id = null){
+        $emprestimo = $this->Emprestimos->get($id, [
+            'contain' => ['Acessorios', 'Usuarios']
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
+            if ($this->Emprestimos->save($emprestimo)) {
+                $this->Flash->success(__('The emprestimo has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
+        }
+        $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
+        $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
+        $this->set(compact('emprestimo', 'acessorios', 'usuarios'));
+        $this->set('_serialize', ['emprestimo']);
     }
 
     public function add()
     {
-
         $emprestimo = $this->Emprestimos->newEntity();
         if ($this->request->is('post')) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
@@ -72,7 +87,8 @@ class EmprestimosController extends AppController
             $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
         }
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
-        $this->set(compact('emprestimo', 'acessorios'));
+        $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
+        $this->set(compact('emprestimo', 'acessorios', 'usuarios'));
         $this->set('_serialize', ['emprestimo']);
     }
 
@@ -86,7 +102,7 @@ class EmprestimosController extends AppController
     public function edit($id = null)
     {
         $emprestimo = $this->Emprestimos->get($id, [
-            'contain' => ['Acessorios']
+            'contain' => ['Acessorios', 'Usuarios']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
@@ -98,7 +114,8 @@ class EmprestimosController extends AppController
             $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
         }
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
-        $this->set(compact('emprestimo', 'acessorios'));
+        $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
+        $this->set(compact('emprestimo', 'acessorios', 'usuarios'));
         $this->set('_serialize', ['emprestimo']);
     }
 

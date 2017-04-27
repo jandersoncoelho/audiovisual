@@ -26,9 +26,9 @@
        echo $this->Form->radio(
     'tipo',
     [
-        ['value' => 'administrador', 'text' => 'Administrador'],
-        ['value' => 'atendente', 'text' => 'Atendente'],
-        ['value' => 'solicitante', 'text' => 'Solicitante',],
+        ['value' => 'Administrador', 'text' => 'Administrador'],
+        ['value' => 'Atendente', 'text' => 'Atendente'],
+        ['value' => 'Solicitante', 'text' => 'Solicitante',],
     ]
 );
             

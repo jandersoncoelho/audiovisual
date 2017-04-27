@@ -43,7 +43,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
+        $this->loadComponent('Auth', ['authorize' => ['Controller'],
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -74,6 +74,18 @@ class AppController extends Controller
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
     }
+
+  public function isAuthorized($usuario)
+{
+    // Admin pode acessar todas as actions
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'administrador' || $usuario['tipo'] === 'atendente') {
+        return true;
+    }
+
+    // Bloqueia acesso por padrão
+    return false;
+     //$this->Flash->error(__('Este usuário não possui autorização'));
+}
 
     public function beforeFilter(Event $event){
         $this->set('usuarioLogado', $this->Auth->User('nome'));

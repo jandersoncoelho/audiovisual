@@ -39,20 +39,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    var availableTags = [<?=$usuarios?>];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
-
-  $( "#city" ).autocomplete({
-  source: "/cake/contacts/find",
-  minLength: 2,
-  delay: 2
-});
-  </script>
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
@@ -63,10 +49,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-
-               
-               
-
                 <li><?= $this->Html->link(__($usuarioLogado), ['controller' => 'Usuarios', 'action' => 'view', $idLogado]) ?></li>
                 <li><?= $this->Html->link(__('Sair'), ['controller' => 'Usuarios', 'action' => 'logout']) ?></li>
             </ul>
@@ -76,10 +58,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Opções') ?></li>
-        <li><?= $this->Html->link(__('Emprestimos'), ['controller' => 'Emprestimos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Emprestar'), ['controller' => 'Emprestimos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Empréstimos Pendentes'), ['controller' => 'Emprestimos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Empréstimos Finalizados'), ['controller' => 'Emprestimos', 'action' => 'finalizados']) ?></li>
         <li><?= $this->Html->link(__('Usuários'), ['controller' => 'Usuarios', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Equipamentos'), ['controller' => 'Equipamentos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Acessórios'), ['controller' => 'Acessorios', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Ocorrências'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
     </ul>
 </nav>
     <?= $this->Flash->render() ?>
