@@ -9,22 +9,18 @@
     <fieldset>
         <legend><?= __('Novo Empréstimo') ?></legend>
 
-        <?php 
+        <label>Selecione o Solicitante</label>
+        <select name="nomeSolicitante">
+        <?php
+    foreach ($usuarios as $usuario) 
+    { ?>
+        <option value='<?php echo $usuario; ?>'><?php echo $usuario; ?></option> 
+    <?php } ?>
+    </select>
+    <?php
 
-        $nomes;
-       $i = 0;
-        foreach ($usuarios as $usuario):
-            $nomes[$i] = strval($usuario);
-        echo strval($nomes[$i]);
-        $i++;
-        
-        endforeach; 
-        //echo strval($usuarios);
-
-        //$user = $usuarios->nome;
-        //echo $usuarios->nome;
             echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio'));
-            echo $this->form->input('nomeSolicitante', array('type'=>'select', 'options'=> $nomes, 'label'=>'Selecione o Solicitante'));
+            //echo $this->form->input('nomeSolicitante', array('type'=>'select', 'options' => $usuarios->nome, 'label'=>'Selecione o Solicitante'));
             echo $this->Form->control('nomeAtendente', array('type' => 'hidden', 'value'=> $usuarioLogado));
             echo $this->Form->control('situacao', array('type' => 'hidden', 'value' => 'Pendente'));
             date_default_timezone_set('America/Sao_Paulo');

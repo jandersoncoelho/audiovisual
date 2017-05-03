@@ -21,8 +21,8 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($emprestimos as $emprestimo): 
-            if ($emprestimo->situacao == 'Devolvido') {
+            <?php foreach ($devolvidos as $emprestimo): 
+            //if ($emprestimo->situacao == 'Devolvido') {
                 # code...
             ?>
             <tr>
@@ -35,7 +35,7 @@
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $emprestimo->id]) ?>
                 </td>
             </tr>
-            <?php } ?>
+            <?php //} ?>
             <?php endforeach; ?>
         </tbody>
     </table>

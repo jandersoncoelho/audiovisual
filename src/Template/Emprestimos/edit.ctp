@@ -10,8 +10,8 @@
         <legend><?= __('Editar Empréstimo') ?></legend>
         <?php
             echo $this->Form->control('nomeAtendente', array('label' => 'Nome do Atendente' ));
-            echo $this->Form->control('nomeSolicitante', array('label' => 'Nome do Solicitante' );
-            echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio' );
+            echo $this->Form->control('nomeSolicitante', array('label' => 'Nome do Solicitante' ));
+            echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio' ));
 
             ?>
 

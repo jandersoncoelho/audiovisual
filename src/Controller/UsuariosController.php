@@ -26,6 +26,8 @@ class UsuariosController extends AppController
 
      public function login()
     {
+        //$this->layout = 'login';
+        $this->viewBuilder()->setLayout('login');
          if ($this->request->is('post')) {
         $usuario = $this->Auth->identify();
 
@@ -33,10 +35,8 @@ class UsuariosController extends AppController
             $this->Auth->setUser($usuario);
             return $this->redirect($this->Auth->redirectUrl());
         }
-        //$this->Flash->error('Your username or password is incorrect.');
-        ?><div class="alert alert-danger" role="alert">
-  <strong>Erro!</strong> Usuário e/ou senha incorreto(s).
-<?php
+        $this->Flash->error('Your username or password is incorrect.');
+    
     }
 
     }

@@ -5,7 +5,6 @@
 ?>
 <ul class="side-nav">    
     <?php if ($emprestimo->situacao == 'Pendente') { ?>
-    
         <li><?= $this->Html->link(__('Devolver'), ['action' => 'finish', $emprestimo->id]) ?></li>
         <?php } ?>
 
@@ -110,3 +109,6 @@
         <?php endif; ?>
     </div>
 </div>
+
+
+

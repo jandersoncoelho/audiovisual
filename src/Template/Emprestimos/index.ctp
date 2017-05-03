@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($emprestimos as $emprestimo): 
+            <?php foreach ($pendentes as $emprestimo): 
             if ($emprestimo->situacao == 'Pendente') { ?>
             <tr>
               
