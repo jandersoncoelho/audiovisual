@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03-Maio-2017 às 16:06
+-- Generation Time: 04-Maio-2017 às 16:12
 -- Versão do servidor: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -44,7 +44,8 @@ INSERT INTO `acessorios` (`id`, `nome`, `created`, `modified`) VALUES
 (4, 'Cabo VGA', '2017-04-17 18:32:58', '2017-04-17 18:32:58'),
 (5, 'Carregador', '2017-04-17 18:33:09', '2017-04-17 18:33:09'),
 (6, 'Caixa', '2017-04-17 18:33:44', '2017-04-17 18:33:44'),
-(7, 'Cabo A/V', '2017-04-17 18:33:56', '2017-04-17 18:33:56');
+(7, 'Cabo A/V', '2017-04-17 18:33:56', '2017-04-17 18:33:56'),
+(8, 'Cabo X', '2017-05-04 13:28:11', '2017-05-04 13:28:11');
 
 -- --------------------------------------------------------
 
@@ -69,10 +70,17 @@ CREATE TABLE `emprestimos` (
 --
 
 INSERT INTO `emprestimos` (`id`, `nomeDevolveu`, `dataRetirada`, `dataDevolucao`, `situacao`, `nomeAtendente`, `numeroPatrimonio`, `nomeSolicitante`, `nomeResponsavel`) VALUES
-(78, NULL, '2017-05-03 10:28:00', NULL, 'Pendente', 'Breno', '409098', 'João', ''),
-(79, NULL, '2017-05-03 10:39:00', NULL, 'Pendente', 'Breno', '545466', 'Janderson', ''),
+(78, 'José Geraldo', '2017-05-03 10:28:00', '2017-05-04 09:32:00', 'Devolvido', 'Breno', '409098', 'João', 'Breno Parreira'),
+(79, 'Maria Joana', '2017-05-03 10:39:00', '2017-05-04 09:17:00', 'Devolvido', 'Breno', '545466', 'Janderson', 'Breno Parreira'),
 (80, 'Alberto', '2017-05-03 10:39:00', '2017-05-03 10:39:00', 'Devolvido', 'Breno', '54545454', 'Rodrigo', 'Breno'),
-(81, 'Maria', '2017-05-03 10:51:00', '2017-05-03 10:51:00', 'Devolvido', 'Breno', '323232', 'João', 'Breno');
+(81, 'Maria', '2017-05-03 10:51:00', '2017-05-03 10:51:00', 'Devolvido', 'Breno', '323232', 'João', 'Breno'),
+(82, 'Marcos', '2017-05-03 16:49:00', '2017-05-03 19:56:00', 'Devolvido', 'Breno', '323232', 'Breno Parreira Gonçalves', 'Breno Parreira'),
+(83, 'Marcos', '2017-05-03 19:47:00', '2017-05-04 09:30:00', 'Devolvido', 'Breno Parreira', '2121212', 'Delfina', 'Breno Parreira'),
+(84, 'Antônio', '2017-05-03 20:00:00', '2017-05-04 09:22:00', 'Devolvido', 'Breno Parreira', '43434211', 'Fernanda', 'Breno Parreira'),
+(85, 'João', '2017-05-03 20:10:00', '2017-05-03 20:10:00', 'Devolvido', 'Breno Parreira', '34345345', 'Delfina', 'Breno Parreira'),
+(86, 'José', '2017-05-04 07:45:00', '2017-05-04 09:18:00', 'Devolvido', 'Breno Parreira', '45345322', 'Kurt Cobain', 'Breno Parreira'),
+(88, NULL, '2017-05-04 11:11:00', NULL, 'Pendente', 'Fulano', '2123211', 'Zeca Pagodinho', ''),
+(89, NULL, '2017-05-04 11:11:00', NULL, 'Pendente', 'Fulano', '565776876', 'Cristiano Ronaldo', '');
 
 -- --------------------------------------------------------
 
@@ -93,18 +101,18 @@ INSERT INTO `emprestimos_acessorios` (`emprestimo_id`, `acessorio_id`) VALUES
 (78, 2),
 (78, 3),
 (79, 1),
-(80, 5);
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `emprestimos_usuarios`
---
-
-CREATE TABLE `emprestimos_usuarios` (
-  `emprestimo_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(80, 5),
+(82, 2),
+(83, 3),
+(84, 2),
+(84, 3),
+(84, 4),
+(85, 1),
+(86, 4),
+(86, 5),
+(88, 1),
+(89, 3),
+(89, 4);
 
 -- --------------------------------------------------------
 
@@ -127,8 +135,7 @@ CREATE TABLE `equipamentos` (
 INSERT INTO `equipamentos` (`id`, `nome`, `numeroPatrimonio`, `created`, `modified`) VALUES
 (1, 'Notebook', '40203012', '2017-04-14 14:03:37', '2017-04-14 14:05:44'),
 (2, 'Trambolho', '23090909', '2017-04-14 14:04:30', '2017-04-14 14:04:30'),
-(3, 'Data Show', '323232', '2017-04-17 19:13:14', '2017-04-17 19:13:14'),
-(4, 'testsasa', '213232', '2017-04-17 19:18:12', '2017-04-17 20:00:05');
+(5, 'Data Show', '21111223', '2017-05-04 11:42:45', '2017-05-04 11:42:45');
 
 -- --------------------------------------------------------
 
@@ -146,10 +153,9 @@ CREATE TABLE `equipamentos_acessorios` (
 --
 
 INSERT INTO `equipamentos_acessorios` (`equipamento_id`, `acessorio_id`) VALUES
-(4, 1),
-(4, 2),
-(4, 3),
-(4, 5);
+(5, 3),
+(5, 5),
+(5, 6);
 
 -- --------------------------------------------------------
 
@@ -165,6 +171,13 @@ CREATE TABLE `ocorrencias` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `ocorrencias`
+--
+
+INSERT INTO `ocorrencias` (`id`, `idEmprestimo`, `descricao`, `providenciaTomada`, `created`, `modified`) VALUES
+(1, 84, 'Faltou um teclado', 'Chamar a Polícia', '2017-05-03 23:05:13', '2017-05-03 23:05:13');
 
 -- --------------------------------------------------------
 
@@ -194,7 +207,36 @@ INSERT INTO `phinxlog` (`version`, `migration_name`, `start_time`, `end_time`, `
 (20170425205726, 'AddNomeSolicitanteToEmprestimos', '2017-04-25 23:57:31', '2017-04-25 23:57:32', 0),
 (20170426103457, 'AddNomeResponsavelToEmprestimos', '2017-04-26 13:41:00', '2017-04-26 13:41:01', 0),
 (20170426104319, 'RemoveIdAtendenteFromEmprestimos', '2017-04-26 13:43:55', '2017-04-26 13:43:56', 0),
-(20170426104349, 'RemoveOcorrenciaFromEmprestimos', '2017-04-26 13:43:56', '2017-04-26 13:43:56', 0);
+(20170426104349, 'RemoveOcorrenciaFromEmprestimos', '2017-04-26 13:43:56', '2017-04-26 13:43:56', 0),
+(20170503215017, 'CreateSolicitantes', '2017-05-04 00:51:26', '2017-05-04 00:51:26', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `solicitantes`
+--
+
+CREATE TABLE `solicitantes` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `cpf` text NOT NULL,
+  `matricula` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `solicitantes`
+--
+
+INSERT INTO `solicitantes` (`id`, `nome`, `cpf`, `matricula`, `email`, `password`, `created`, `modified`) VALUES
+(1, 'Delfina', '09894839342', '323434521', 'delfina@mail.com', '$2y$10$7DapakG7spO8n1WnrrK8t.hs5Mh0ViQJmjkBCNVUzBkhnf0Q9tnMe', '2017-05-03 22:12:38', '2017-05-03 22:39:54'),
+(3, 'Fernanda', '0932323203', '434234321', 'fernanda@gmail.com', '$2y$10$Ih30k1P1uyFgLiOkcMry2eQVFsoM1fzimgqit9MiFnF7rF5MtJgZ.', '2017-05-03 22:41:22', '2017-05-03 22:41:22'),
+(4, 'Zeca Pagodinho', '23242422111', '3243234', 'zeca@gmail.com', '$2y$10$rIecO2pBhHcBFGQxyCK04OHo1ivkmVOp7nrE/jvG4mexDr2JbPiiG', '2017-05-04 10:43:30', '2017-05-04 10:43:30'),
+(5, 'Kurt Cobain', '832618188032', '4319486361', 'kurt@gmail.com', '$2y$10$6eCPAw3Szeqw7P1wCJBXTufv6Y4ggUtIaR67MQBVlnoAY4ndEiMO2', '2017-05-04 10:44:11', '2017-05-04 10:44:11'),
+(6, 'Cristiano Ronaldo', '932802421', '324343', 'real@mail.com', '$2y$10$4L2IHU2KZesgrhmjwebS8.WVPkEAbes/UJa66AZlzioRFWUlsOOmu', '2017-05-04 10:45:44', '2017-05-04 10:45:44');
 
 -- --------------------------------------------------------
 
@@ -217,11 +259,12 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `password`, `tipo`, `created`, `modified`) VALUES
-(1, 'Breno', 'breno.parreira@live.com', '$2y$10$KlS7QTXO1B5Y.lzNU/IlZ.Desrer4qr1oGLVVL5xvuQ3dbsMSu.7K', 'administrador', '2017-04-13 21:29:31', '2017-04-23 05:25:39'),
-(2, 'João', 'joao@gmail.com', '$2y$10$oHhjbQuYH4VC.ftxuOTrLOBXdQgQDwG1Gv3ALTWva63Jhktsxkk9G', 'atendente', '2017-04-14 14:20:20', '2017-04-14 14:20:20'),
-(3, 'Rodrigo', 'rodrigo@iftm.edu.br', '$2y$10$6O8f1LBbLrhCYJTkc9pgM./yKtt6VMyOcM.llbSy8M042HKOLgRdG', 'atendente', '2017-04-15 17:15:21', '2017-04-15 17:15:21'),
-(6, 'Janderson', 'janderson@iftm.edu.br', '$2y$10$9YZv7Ycqu90atVXgQCxTLOpoib/p650DRWuMle/iWUxF7Jp3Z7YAm', 'administrador', '2017-04-18 14:14:01', '2017-04-18 14:14:01'),
-(7, 'José', 'jose@mail.com', '$2y$10$lRpf0Aqace8qg28MRHS3E.VHTxazYgTFjVxFUy5r/.3orBdhhqfK.', 'solicitante', '2017-04-26 12:02:31', '2017-04-26 12:02:31');
+(9, 'Breno Parreira', 'breno.parreira@live.com', '$2y$10$7UG40dOn7Hw5BHEFZ4C4U.0OM4PIn9.yDSgxncrkni4Bj0grGLR2q', 'Administrador', '2017-05-03 22:23:45', '2017-05-03 22:23:45'),
+(10, 'Janderson', 'janderson@iftm.edu.br', '$2y$10$mJL/6DCImSvLQLB6bZO2nupxHapiZMyV8B71nEXgdRITVok7tU3SW', 'Administrador', '2017-05-03 22:24:19', '2017-05-03 22:24:19'),
+(11, 'Rodrigo', 'rodrigo@gmail.com', '$2y$10$/hlXopnsEEYiK7LHs4VMQuIbWQv9.WedWPkFfSTwv84wb5.SZ8sgm', 'Administrador', '2017-05-03 22:24:43', '2017-05-03 22:24:43'),
+(12, 'Márcio', 'marcio@gmail.com', '$2y$10$wk3Y2WDLhNQDwCV52OOBGuyrjz.aLXqL3tXYyMMegVpxcOKUbxhca', 'Atendente', '2017-05-03 22:25:15', '2017-05-03 22:25:15'),
+(13, 'Marcelo', 'marcelo@gmail.com', '$2y$10$aAAeB/hxjiQEOoGtb8gJoeYTTZ22Ed32vslazPk.Ayq1SwFSx344C', 'Atendente', '2017-05-04 10:41:40', '2017-05-04 10:41:40'),
+(14, 'Fulano', 'fulano@gmail.com', '$2y$10$RQycIWoOqwt2EGs4gYYEz.wTEESG4ljEklCmXxdqci9YqSEt9CaU6', 'Atendente', '2017-05-04 12:48:37', '2017-05-04 12:48:37');
 
 --
 -- Indexes for dumped tables
@@ -245,13 +288,6 @@ ALTER TABLE `emprestimos`
 ALTER TABLE `emprestimos_acessorios`
   ADD PRIMARY KEY (`emprestimo_id`,`acessorio_id`),
   ADD KEY `acessorio_id2` (`acessorio_id`,`emprestimo_id`);
-
---
--- Indexes for table `emprestimos_usuarios`
---
-ALTER TABLE `emprestimos_usuarios`
-  ADD PRIMARY KEY (`emprestimo_id`,`usuario_id`),
-  ADD KEY `usuario_id2` (`usuario_id`,`emprestimo_id`);
 
 --
 -- Indexes for table `equipamentos`
@@ -281,6 +317,12 @@ ALTER TABLE `phinxlog`
   ADD PRIMARY KEY (`version`);
 
 --
+-- Indexes for table `solicitantes`
+--
+ALTER TABLE `solicitantes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -294,27 +336,32 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `acessorios`
 --
 ALTER TABLE `acessorios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `emprestimos`
 --
 ALTER TABLE `emprestimos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 --
 -- AUTO_INCREMENT for table `equipamentos`
 --
 ALTER TABLE `equipamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `ocorrencias`
 --
 ALTER TABLE `ocorrencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `solicitantes`
+--
+ALTER TABLE `solicitantes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
@@ -325,13 +372,6 @@ ALTER TABLE `usuarios`
 ALTER TABLE `emprestimos_acessorios`
   ADD CONSTRAINT `acessorio2_key` FOREIGN KEY (`acessorio_id`) REFERENCES `acessorios` (`id`),
   ADD CONSTRAINT `emprestimo2_key` FOREIGN KEY (`emprestimo_id`) REFERENCES `emprestimos` (`id`);
-
---
--- Limitadores para a tabela `emprestimos_usuarios`
---
-ALTER TABLE `emprestimos_usuarios`
-  ADD CONSTRAINT `emprestimo3_key` FOREIGN KEY (`emprestimo_id`) REFERENCES `emprestimos` (`id`),
-  ADD CONSTRAINT `usuario3_key` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 
 --
 -- Limitadores para a tabela `equipamentos_acessorios`

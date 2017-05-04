@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Audiovisual';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 
@@ -62,6 +61,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <li><?= $this->Html->link(__('Empréstimos Pendentes'), ['controller' => 'Emprestimos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Empréstimos Finalizados'), ['controller' => 'Emprestimos', 'action' => 'finalizados']) ?></li>
         <li><?= $this->Html->link(__('Usuários'), ['controller' => 'Usuarios', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Solicitantes'), ['controller' => 'Solicitantes', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Equipamentos'), ['controller' => 'Equipamentos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Acessórios'), ['controller' => 'Acessorios', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Ocorrências'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>

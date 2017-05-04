@@ -9,21 +9,19 @@
     </ul>
 
 <div class="usuarios index large-11 medium-8 columns content">
-    
+    <h3><?= __('Usuários') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tipo') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($usuarios as $usuario): ?>
             <tr>
-                <td><?= $this->Number->format($usuario->id) ?></td>
                 <td><?= h($usuario->nome) ?></td>
                 <td><?= h($usuario->email) ?></td>
                 <td><?= h($usuario->tipo) ?></td>

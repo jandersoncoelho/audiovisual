@@ -7,21 +7,19 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Equipamentos Model
+ * Solicitantes Model
  *
- * @property \Cake\ORM\Association\BelongsToMany $Acessorios
- *
- * @method \App\Model\Entity\Equipamento get($primaryKey, $options = [])
- * @method \App\Model\Entity\Equipamento newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Equipamento[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Equipamento|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Equipamento patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Equipamento[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Equipamento findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Solicitante get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Solicitante newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Solicitante[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Solicitante|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Solicitante patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Solicitante[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Solicitante findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class EquipamentosTable extends Table
+class SolicitantesTable extends Table
 {
 
     /**
@@ -34,17 +32,11 @@ class EquipamentosTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('equipamentos');
+        $this->setTable('solicitantes');
         $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
-        $this->belongsToMany('Acessorios', [
-            'foreignKey' => 'equipamento_id',
-            'targetForeignKey' => 'acessorio_id',
-            'joinTable' => 'equipamentos_acessorios'
-        ]);
     }
 
     /**
@@ -64,9 +56,21 @@ class EquipamentosTable extends Table
             ->notEmpty('nome');
 
         $validator
-            ->requirePresence('numeroPatrimonio', 'create')
-            ->notEmpty('numeroPatrimonio')
-            ->add('numeroPatrimonio', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->requirePresence('cpf', 'create')
+            ->notEmpty('cpf');
+
+        $validator
+            ->requirePresence('matricula', 'create')
+            ->notEmpty('matricula');
+
+        $validator
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmpty('email');
+
+        $validator
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 
         return $validator;
     }
@@ -80,7 +84,7 @@ class EquipamentosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['numeroPatrimonio']));
+        $rules->add($rules->isUnique(['email']));
 
         return $rules;
     }

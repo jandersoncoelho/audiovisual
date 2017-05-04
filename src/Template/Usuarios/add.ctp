@@ -2,6 +2,8 @@
 /**
   * @var \App\View\AppView $this
   */
+
+echo $tipoLogado;
 ?>
 
     <ul class="side-nav">
@@ -16,19 +18,16 @@
         
             <?=$this->Form->control('nome', ['class'=>'form-control']);?>
             <?=$this->Form->control('email', ['class'=>'form-control']);?>
-            <?=$this->Form->control('password', ['class'=>'form-control']);?>
+            <?=$this->Form->control('password', array('class'=>'form-control','label' => 'Senha' ));?>
 
             <fieldset>
         <legend><?= __('Selecione o tipo do usuário') ?></legend>
         
 
        <?php
-       echo $this->Form->radio(
-    'tipo',
-    [
+       echo $this->Form->radio('tipo',[
         ['value' => 'Administrador', 'text' => 'Administrador'],
-        ['value' => 'Atendente', 'text' => 'Atendente'],
-        ['value' => 'Solicitante', 'text' => 'Solicitante',],
+        ['value' => 'Atendente', 'text' => 'Atendente']
     ]
 );
             

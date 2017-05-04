@@ -12,9 +12,9 @@
         <label>Selecione o Solicitante</label>
         <select name="nomeSolicitante">
         <?php
-    foreach ($usuarios as $usuario) 
+    foreach ($solicitantes as $solicitante) 
     { ?>
-        <option value='<?php echo $usuario; ?>'><?php echo $usuario; ?></option> 
+        <option value='<?php echo $solicitante; ?>'><?php echo $solicitante; ?></option> 
     <?php } ?>
     </select>
     <?php

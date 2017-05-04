@@ -71,17 +71,16 @@ class EmprestimosController extends AppController
         $emprestimo = $this->Emprestimos->get($id, [
             'contain' => ['Acessorios']
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        if ($this->request->is(['patch', 'post', 'put'])  && $emprestimo->situacao == 'Pendente') {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
             if ($this->Emprestimos->save($emprestimo)) {
                 $this->Flash->success(__('The emprestimo has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'finalizados']);
             }
             $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
         }
-        $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
-        $this->set(compact('emprestimo', 'acessorios'));
+        $this->set(compact('emprestimo'));
         $this->set('_serialize', ['emprestimo']);
     }
 
@@ -99,8 +98,9 @@ class EmprestimosController extends AppController
         }
 
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
-        $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
-        $this->set(compact('emprestimo', 'acessorios', 'usuarios'));
+        $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
+        $equipamentos = $this->Emprestimos->Equipamentos->find('list', ['limit' => 200]);
+        $this->set(compact('emprestimo', 'acessorios', 'solicitantes', 'equipamentos'));
         $this->set('_serialize', ['emprestimo']);
     }
 
@@ -114,7 +114,7 @@ class EmprestimosController extends AppController
     public function edit($id = null)
     {
         $emprestimo = $this->Emprestimos->get($id, [
-            'contain' => ['Acessorios', 'Usuarios']
+            'contain' => ['Acessorios']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
@@ -126,8 +126,8 @@ class EmprestimosController extends AppController
             $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
         }
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
-        $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
-        $this->set(compact('emprestimo', 'acessorios', 'usuarios'));
+        $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
+        $this->set(compact('emprestimo', 'acessorios', 'solicitantes'));
         $this->set('_serialize', ['emprestimo']);
     }
 

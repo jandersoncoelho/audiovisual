@@ -9,8 +9,12 @@
     </ul>
 
 <div class="usuarios view large-9 medium-8 columns content">
-    <h3><?= h($usuario->id) ?></h3>
+    <h3><?= h($usuario->nome) ?></h3>
     <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('ID') ?></th>
+            <td><?= h($usuario->id) ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Nome') ?></th>
             <td><?= h($usuario->nome) ?></td>
@@ -22,10 +26,6 @@
         <tr>
             <th scope="row"><?= __('Tipo') ?></th>
             <td><?= h($usuario->tipo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($usuario->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>

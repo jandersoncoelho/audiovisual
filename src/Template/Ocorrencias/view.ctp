@@ -8,11 +8,11 @@
     <h3><?= h($ocorrencia->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Id Ocorrência') ?></th>
+            <th scope="row"><?= __('ID Ocorrência') ?></th>
             <td><?= $this->Number->format($ocorrencia->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id Empréstimo') ?></th>
+            <th scope="row"><?= __('ID Empréstimo') ?></th>
             <td><?= $this->Number->format($ocorrencia->idEmprestimo) ?></td>
         </tr>
         <tr>

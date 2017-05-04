@@ -5,26 +5,27 @@
 ?>
 
 <div class="equipamentos view large-11 medium-8 columns content">
-    <h3><?= h($equipamento->id) ?></h3>
+    <h3><?= h($equipamento->nome) ?></h3>
     <table class="vertical-table">
+         <tr>
+            <th scope="row"><?= __('ID') ?></th>
+            <td><?= $this->Number->format($equipamento->id) ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Nome') ?></th>
             <td><?= h($equipamento->nome) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('NumeroPatrimonio') ?></th>
+            <th scope="row"><?= __('Número Patrimônio') ?></th>
             <td><?= h($equipamento->numeroPatrimonio) ?></td>
         </tr>
+       
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($equipamento->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
+            <th scope="row"><?= __('Criado') ?></th>
             <td><?= h($equipamento->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
+            <th scope="row"><?= __('Modificado') ?></th>
             <td><?= h($equipamento->modified) ?></td>
         </tr>
     </table>
@@ -33,11 +34,11 @@
         <?php if (!empty($equipamento->acessorios)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('ID') ?></th>
                 <th scope="col"><?= __('Nome') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Criado') ?></th>
+                <th scope="col"><?= __('Modificado') ?></th>
+                <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
             <?php foreach ($equipamento->acessorios as $acessorios): ?>
             <tr>

@@ -46,12 +46,8 @@ class EmprestimosTable extends Table
             'joinTable' => 'emprestimos_acessorios'
         ]);
 
-         $this->belongsToMany('Usuarios', [
-            'foreignKey' => 'emprestimo_id',
-            'targetForeignKey' => 'usuario_id',
-            'joinTable' => 'emprestimos_usuarios'
-        ]);
-
+         $this->belongsTo('Solicitantes');
+         $this->belongsTo('Equipamentos');
 
     }
 

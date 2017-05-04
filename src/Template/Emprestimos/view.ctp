@@ -17,33 +17,33 @@
     <h3><?= h($emprestimo->id) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Id Empréstimo') ?></th>
+            <th scope="row"><?= __('ID Empréstimo') ?></th>
             <td><?= $this->Number->format($emprestimo->id) ?></td>
         </tr>
+          <tr>
+            <th scope="row"><?= __('Número Patrimônio') ?></th>
+            <td><?= h($emprestimo->numeroPatrimonio) ?></td>
+        </tr>
+          <tr>
+            <th scope="row"><?= __('Situação') ?></th>
+            <td><?= h($emprestimo->situacao) ?></td>
+        </tr> 
         <tr>
-            <th scope="row"><?= __('Nome Devolveu') ?></th>
-            <td><?= h($emprestimo->nomeDevolveu) ?></td>
+            <th scope="row"><?= __('Atendente') ?></th>
+            <td><?= h($emprestimo->nomeAtendente) ?></td>
+        </tr>
+         <tr>
+            <th scope="row"><?= __('Solicitante') ?></th>
+            <td><?= h($emprestimo->nomeSolicitante) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Responsável pela Devolução') ?></th>
             <td><?= h($emprestimo->nomeResponsavel) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Situação') ?></th>
-            <td><?= h($emprestimo->situacao) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Atendente') ?></th>
-            <td><?= h($emprestimo->nomeAtendente) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Solicitante') ?></th>
-            <td><?= h($emprestimo->nomeSolicitante) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Número Patrimônio') ?></th>
-            <td><?= h($emprestimo->numeroPatrimonio) ?></td>
-        </tr>
+            <th scope="row"><?= __('Solicitante/Aluno que Realizou a Devolução') ?></th>
+            <td><?= h($emprestimo->nomeDevolveu) ?></td>
+        </tr>        
         <tr>
             <th scope="row"><?= __('Data Retirada') ?></th>
             <td><?= h($emprestimo->dataRetirada) ?></td>
@@ -86,8 +86,8 @@
         <?php if (!empty($emprestimo->ocorrencias)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id Ocorrência') ?></th>
-                <th scope="col"><?= __('Id Empréstimo') ?></th>
+                <th scope="col"><?= __('ID Ocorrência') ?></th>
+                <th scope="col"><?= __('ID Empréstimo') ?></th>
                 <th scope="col"><?= __('Descrição') ?></th>
                 <th scope="col"><?= __('Providência') ?></th>
                 <th scope="col" class="actions"><?= __('Opções') ?></th>

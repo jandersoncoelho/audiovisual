@@ -5,17 +5,18 @@ use Cake\ORM\Entity;
 use Cake\Auth\DefaultPasswordHasher;
 
 /**
- * Usuario Entity
+ * Solicitante Entity
  *
  * @property int $id
  * @property string $nome
+ * @property string $cpf
+ * @property string $matricula
  * @property string $email
  * @property string $password
- * @property string $tipo
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  */
-class Usuario extends Entity
+class Solicitante extends Entity
 {
 
     /**

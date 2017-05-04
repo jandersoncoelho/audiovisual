@@ -5,22 +5,22 @@
 ?>
 
 <div class="acessorios view large-11 medium-8 columns content">
-    <h3><?= h($acessorio->id) ?></h3>
+    <h3><?= h($acessorio->nome) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($acessorio->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
+            <th scope="row"><?= __('ID') ?></th>
             <td><?= $this->Number->format($acessorio->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
+            <th scope="row"><?= __('Nome') ?></th>
+            <td><?= h($acessorio->nome) ?></td>
+        </tr>  
+        <tr>
+            <th scope="row"><?= __('Criado') ?></th>
             <td><?= h($acessorio->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
+            <th scope="row"><?= __('Modificado') ?></th>
             <td><?= h($acessorio->modified) ?></td>
         </tr>
     </table>
@@ -29,21 +29,17 @@
         <?php if (!empty($acessorio->emprestimos)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('IdAtendente') ?></th>
-                <th scope="col"><?= __('IdSolicitante') ?></th>
-                <th scope="col"><?= __('IdEquipamento') ?></th>
-                <th scope="col"><?= __('DataRetirada') ?></th>
-                <th scope="col"><?= __('DataDevolucao') ?></th>
-                <th scope="col"><?= __('Situacao') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Atendente') ?></th>
+                <th scope="col"><?= __('Solicitante') ?></th>
+                <th scope="col"><?= __('Número Patrimônio') ?></th>
+                <th scope="col"><?= __('Situação') ?></th>
+                <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
             <?php foreach ($acessorio->emprestimos as $emprestimos): ?>
             <tr>
-                <td><?= h($emprestimos->idAtendente) ?></td>
-                <td><?= h($emprestimos->idSolicitante) ?></td>
-                <td><?= h($emprestimos->idEquipamento) ?></td>
-                <td><?= h($emprestimos->dataRetirada) ?></td>
-                <td><?= h($emprestimos->dataDevolucao) ?></td>
+                <td><?= h($emprestimos->nomeAtendente) ?></td>
+                <td><?= h($emprestimos->nomeSolicitante) ?></td>
+                <td><?= h($emprestimos->numeroPatrimonio) ?></td>
                 <td><?= h($emprestimos->situacao) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['controller' => 'Emprestimos', 'action' => 'view', $emprestimos->id]) ?>
@@ -61,10 +57,10 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Nome') ?></th>
-                <th scope="col"><?= __('NumeroPatrimonio') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Número Patrimônio') ?></th>
+                <th scope="col"><?= __('Criado') ?></th>
+                <th scope="col"><?= __('Modificado') ?></th>
+                <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
             <?php foreach ($acessorio->equipamentos as $equipamentos): ?>
             <tr>

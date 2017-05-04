@@ -46,7 +46,6 @@ class UsuariosController extends AppController
     //$this->Flash->success('You are now logged out.');
     return $this->redirect($this->Auth->logout());
 }
-
     /**
      * View method
      *
@@ -69,17 +68,20 @@ class UsuariosController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
+
     public function add()
     {
         $usuario = $this->Usuarios->newEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post') && $this->Auth->User('tipo') == 'Administrador') {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('Usuário cadastrado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+        }else{
+
         }
         $this->set(compact('usuario'));
         $this->set('_serialize', ['usuario']);

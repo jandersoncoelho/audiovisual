@@ -21,21 +21,17 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($devolvidos as $emprestimo): 
-            //if ($emprestimo->situacao == 'Devolvido') {
-                # code...
-            ?>
+            <?php foreach ($devolvidos as $emprestimo): ?>
             <tr>
               
                 <td><?= h($emprestimo->nomeAtendente) ?></td>
                 <td><?= h($emprestimo->nomeSolicitante) ?></td>
                 <td><?= h($emprestimo->numeroPatrimonio) ?></td>
-                <td><?= h($emprestimo->dataRetirada) ?></td>
+                <td><?= h($emprestimo->dataDevolucao) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $emprestimo->id]) ?>
                 </td>
             </tr>
-            <?php //} ?>
             <?php endforeach; ?>
         </tbody>
     </table>

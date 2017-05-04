@@ -9,14 +9,15 @@
     </ul>
 
 <div class="acessorios index large-11 medium-8 columns content">
+    <h3><?= __('Acessórios') ?></h3>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Nome') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Criado') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Modificado') ?></th>
+                <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
         </thead>
         <tbody>
