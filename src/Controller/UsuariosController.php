@@ -24,6 +24,17 @@ class UsuariosController extends AppController
         $this->set('_serialize', ['usuarios']);
     }
 
+// public function isAuthorized($usuario) {
+//     if (parent::isAuthorized($usuario)) {
+//         if ($this->action === 'index') {
+//             // Todos os usuários registrados podem criar posts
+//             return true;
+//         }
+       
+//     }
+//     return false;
+// }    
+
      public function login()
     {
         //$this->layout = 'login';
@@ -63,6 +74,17 @@ class UsuariosController extends AppController
         $this->set('_serialize', ['usuario']);
     }
 
+
+ public function isAuthorized($usuario)
+{
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
+        return true;
+    }else if(in_array($this->request->action, ['index', 'logout', 'view'])){
+    return true;
+}
+return false;
+}
+
     /**
      * Add method
      *
@@ -72,14 +94,14 @@ class UsuariosController extends AppController
     public function add()
     {
         $usuario = $this->Usuarios->newEntity();
-        if ($this->request->is('post') && $this->Auth->User('tipo') == 'Administrador') {
+        if ($this->request->is('post')) {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
                 $this->Flash->success(__('Usuário cadastrado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O usuário não pôde ser salvo. Por favor tente novamente.'));
         }else{
 
         }
@@ -102,11 +124,11 @@ class UsuariosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('Usuário alterado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O usuário não pôde ser alterado. Por favor tente novamente.'));
         }
         $this->set(compact('usuario'));
         $this->set('_serialize', ['usuario']);
@@ -124,9 +146,9 @@ class UsuariosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $usuario = $this->Usuarios->get($id);
         if ($this->Usuarios->delete($usuario)) {
-            $this->Flash->success(__('The usuario has been deleted.'));
+            $this->Flash->success(__('Usuário excluído com sucesso!'));
         } else {
-            $this->Flash->error(__('The usuario could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O usuário não pôde ser excluído. Por favor tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

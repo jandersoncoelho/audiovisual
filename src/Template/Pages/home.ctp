@@ -44,7 +44,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 </head>
 <body>
 
-    <div class="usuarios form large-4 medium-8 columns content">
+   <!--  <div class="usuarios form large-4 medium-8 columns content">
     <fieldset>
         <legend><?= __('Login') ?></legend>
         
@@ -59,9 +59,11 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->image('logo.png', array('alt' => 'CakePHP', 'border' => '0', 'width'=> '200')) ?>
 
   
-</div>
+</div> -->
 
-
+<h3>Para logar acesse:</h3>
+<?= $this->Html->link('    localhost:8765/usuarios/login', 'http://localhost:8765/usuarios/login');
+ ?>
 
 </body>
 </html>

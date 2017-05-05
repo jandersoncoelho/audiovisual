@@ -24,6 +24,16 @@ class OcorrenciasController extends AppController
         $this->set('_serialize', ['ocorrencias']);
     }
 
+         public function isAuthorized($usuario)
+{
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
+        return true;
+    }else if(in_array($this->request->action, ['index', 'logout', 'view', 'add'])){
+    return true;
+}
+return false;
+}
+
     /**
      * View method
      *
@@ -53,11 +63,11 @@ class OcorrenciasController extends AppController
         if ($this->request->is('post')) {
             $ocorrencia = $this->Ocorrencias->patchEntity($ocorrencia, $this->request->getData());
             if ($this->Ocorrencias->save($ocorrencia)) {
-                $this->Flash->success(__('The ocorrencia has been saved.'));
+                $this->Flash->success(__('Ocorrência salva com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
+            $this->Flash->error(__('A ocorrência não pôde ser salva. Por favor, tente novamente.'));
         }
         $this->set(compact('ocorrencia'));
         $this->set('_serialize', ['ocorrencia']);
@@ -78,11 +88,11 @@ class OcorrenciasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $ocorrencia = $this->Ocorrencias->patchEntity($ocorrencia, $this->request->getData());
             if ($this->Ocorrencias->save($ocorrencia)) {
-                $this->Flash->success(__('The ocorrencia has been saved.'));
+                $this->Flash->success(__('Ocorrência alterada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The ocorrencia could not be saved. Please, try again.'));
+            $this->Flash->error(__('A ocorrência não pôde ser alterada. Por favor, tente novamente.'));
         }
         $this->set(compact('ocorrencia'));
         $this->set('_serialize', ['ocorrencia']);
@@ -100,9 +110,9 @@ class OcorrenciasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $ocorrencia = $this->Ocorrencias->get($id);
         if ($this->Ocorrencias->delete($ocorrencia)) {
-            $this->Flash->success(__('The ocorrencia has been deleted.'));
+            $this->Flash->success(__('Ocorrência excluída com sucesso.'));
         } else {
-            $this->Flash->error(__('The ocorrencia could not be deleted. Please, try again.'));
+            $this->Flash->error(__('A ocorrência não pôde ser excluída. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

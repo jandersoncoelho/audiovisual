@@ -2,8 +2,6 @@
 /**
   * @var \App\View\AppView $this
   */
-
-echo $tipoLogado;
 ?>
 
     <ul class="side-nav">

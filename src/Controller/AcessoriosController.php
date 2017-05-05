@@ -52,11 +52,11 @@ class AcessoriosController extends AppController
         if ($this->request->is('post')) {
             $acessorio = $this->Acessorios->patchEntity($acessorio, $this->request->getData());
             if ($this->Acessorios->save($acessorio)) {
-                $this->Flash->success(__('The acessorio has been saved.'));
+                $this->Flash->success(__('Acessório cadastrado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The acessorio could not be saved. Please, try again.'));
+            $this->Flash->error(__('O acessório não pôde ser salvo. Por favor, tente novamente.'));
         }
         $emprestimos = $this->Acessorios->Emprestimos->find('list', ['limit' => 200]);
         $equipamentos = $this->Acessorios->Equipamentos->find('list', ['limit' => 200]);
@@ -79,11 +79,11 @@ class AcessoriosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $acessorio = $this->Acessorios->patchEntity($acessorio, $this->request->getData());
             if ($this->Acessorios->save($acessorio)) {
-                $this->Flash->success(__('The acessorio has been saved.'));
+                $this->Flash->success(__('Acessório alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The acessorio could not be saved. Please, try again.'));
+            $this->Flash->error(__('O acessório não pôde ser alterado. Por favor, tente novamente.'));
         }
         $emprestimos = $this->Acessorios->Emprestimos->find('list', ['limit' => 200]);
         $equipamentos = $this->Acessorios->Equipamentos->find('list', ['limit' => 200]);
@@ -103,9 +103,9 @@ class AcessoriosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $acessorio = $this->Acessorios->get($id);
         if ($this->Acessorios->delete($acessorio)) {
-            $this->Flash->success(__('The acessorio has been deleted.'));
+            $this->Flash->success(__('Acessório excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('The acessorio could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O acessório não pôde ser excluído. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

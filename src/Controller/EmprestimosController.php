@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 
 /**
  * Emprestimos Controller
@@ -42,6 +43,16 @@ class EmprestimosController extends AppController
         $this->set('_serialize', ['devolvidos']);
     }
 
+     public function isAuthorized($usuario)
+{
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
+        return true;
+    }else if(in_array($this->request->action, ['index', 'finalizados', 'finish', 'add', 'logout', 'view'])){
+    return true;
+}
+return false;
+}
+
  
 
     /**
@@ -74,11 +85,11 @@ class EmprestimosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])  && $emprestimo->situacao == 'Pendente') {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
             if ($this->Emprestimos->save($emprestimo)) {
-                $this->Flash->success(__('The emprestimo has been saved.'));
+                $this->Flash->success(__('Empréstimo finalizado com sucesso.'));
 
                 return $this->redirect(['action' => 'finalizados']);
             }
-            $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O emprestimo não pôde ser finalizado. Por favor, tente novamente.'));
         }
         $this->set(compact('emprestimo'));
         $this->set('_serialize', ['emprestimo']);
@@ -90,11 +101,11 @@ class EmprestimosController extends AppController
         if ($this->request->is('post')) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
             if ($this->Emprestimos->save($emprestimo)) {
-                $this->Flash->success(__('The emprestimo has been saved.'));
+                $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O emprestimo não pôde ser salvo. Por favor, tente novamente.'));
         }
 
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
@@ -119,11 +130,11 @@ class EmprestimosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
             if ($this->Emprestimos->save($emprestimo)) {
-                $this->Flash->success(__('The emprestimo has been saved.'));
+                $this->Flash->success(__('Empréstimo alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The emprestimo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O emprestimo não pôde ser alterado. Por favor, tente novamente.'));
         }
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
         $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
@@ -143,9 +154,9 @@ class EmprestimosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $emprestimo = $this->Emprestimos->get($id);
         if ($this->Emprestimos->delete($emprestimo)) {
-            $this->Flash->success(__('The emprestimo has been deleted.'));
+            $this->Flash->success(__('Empréstimo excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('The emprestimo could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O emprestimo não pôde ser excluído. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

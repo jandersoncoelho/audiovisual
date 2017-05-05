@@ -24,6 +24,16 @@ class EquipamentosController extends AppController
         $this->set('_serialize', ['equipamentos']);
     }
 
+     public function isAuthorized($usuario)
+{
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
+        return true;
+    }else if(in_array($this->request->action, ['index', 'logout', 'view'])){
+    return true;
+}
+return false;
+}
+
     /**
      * View method
      *
@@ -52,11 +62,11 @@ class EquipamentosController extends AppController
         if ($this->request->is('post')) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
             if ($this->Equipamentos->save($equipamento)) {
-                $this->Flash->success(__('The equipamento has been saved.'));
+                $this->Flash->success(__('Equipamento cadastrado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The equipamento could not be saved. Please, try again.'));
+            $this->Flash->error(__('O equipamento não pôde ser salvo. Por favor, tente novamente.'));
         }
         $acessorios = $this->Equipamentos->Acessorios->find('list', ['limit' => 200]);
         $this->set(compact('equipamento', 'acessorios'));
@@ -78,11 +88,11 @@ class EquipamentosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
             if ($this->Equipamentos->save($equipamento)) {
-                $this->Flash->success(__('The equipamento has been saved.'));
+                $this->Flash->success(__('Equipamento alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The equipamento could not be saved. Please, try again.'));
+            $this->Flash->error(__('O equipamento não pôde ser alterado. Por favor, tente novamente.'));
         }
         $acessorios = $this->Equipamentos->Acessorios->find('list', ['limit' => 200]);
         $this->set(compact('equipamento', 'acessorios'));
@@ -101,9 +111,9 @@ class EquipamentosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $equipamento = $this->Equipamentos->get($id);
         if ($this->Equipamentos->delete($equipamento)) {
-            $this->Flash->success(__('The equipamento has been deleted.'));
+            $this->Flash->success(__('Equipamento excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('The equipamento could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O equipamento não pôde ser excluído. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

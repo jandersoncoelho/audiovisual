@@ -24,6 +24,16 @@ class SolicitantesController extends AppController
         $this->set('_serialize', ['solicitantes']);
     }
 
+         public function isAuthorized($usuario)
+{
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
+        return true;
+    }else if(in_array($this->request->action, ['index', 'logout', 'view'])){
+    return true;
+}
+return false;
+}
+
     /**
      * View method
      *
@@ -52,11 +62,11 @@ class SolicitantesController extends AppController
         if ($this->request->is('post')) {
             $solicitante = $this->Solicitantes->patchEntity($solicitante, $this->request->getData());
             if ($this->Solicitantes->save($solicitante)) {
-                $this->Flash->success(__('The solicitante has been saved.'));
+                $this->Flash->success(__('Solicitante cadastrado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The solicitante could not be saved. Please, try again.'));
+            $this->Flash->error(__('O solicitante não pôde ser salvo. Por favor, tente novamente.'));
         }
         $this->set(compact('solicitante'));
         $this->set('_serialize', ['solicitante']);
@@ -77,11 +87,11 @@ class SolicitantesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $solicitante = $this->Solicitantes->patchEntity($solicitante, $this->request->getData());
             if ($this->Solicitantes->save($solicitante)) {
-                $this->Flash->success(__('The solicitante has been saved.'));
+                $this->Flash->success(__('Solicitante alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The solicitante could not be saved. Please, try again.'));
+            $this->Flash->error(__('O solicitante não pôde ser alterado. Por favor, tente novamente.'));
         }
         $this->set(compact('solicitante'));
         $this->set('_serialize', ['solicitante']);
@@ -99,9 +109,9 @@ class SolicitantesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $solicitante = $this->Solicitantes->get($id);
         if ($this->Solicitantes->delete($solicitante)) {
-            $this->Flash->success(__('The solicitante has been deleted.'));
+            $this->Flash->success(__('Solicitante excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('The solicitante could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O solicitante não pôde ser excluído. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

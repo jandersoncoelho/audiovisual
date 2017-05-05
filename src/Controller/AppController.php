@@ -78,22 +78,18 @@ class AppController extends Controller
   public function isAuthorized($usuario)
 {
     // Admin pode acessar todas as actions
-    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
-        return true;
-    }else if (isset($usuario['tipo']) && $usuario['tipo'] === 'Atendente') {
-        return true;
-    }
-
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador' || $usuario['tipo'] === 'Atendente' ){
+    
+    return true;
+}
     // Bloqueia acesso por padrão
     return false;
-     //$this->Flash->error(__('Este usuário não possui autorização'));
 }
 
     public function beforeFilter(Event $event){
         $this->set('usuarioLogado', $this->Auth->User('nome'));//Pega o nome do usúario que logou
         $this->set('idLogado', $this->Auth->User('id'));       //Pega id do usuário que logou
         $this->set('tipoLogado', $this->Auth->User('tipo'));   //Pega o tipo do usúario logado para definir as permissões
-        //$this->Auth->allow('index', 'login', 'logout');
     }
 
 
