@@ -103,9 +103,15 @@ return false;
             if ($this->Emprestimos->save($emprestimo)) {
                 $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
+                $email = new Email('default');
+                $email->from(['breno.parreira@live.com' => 'Meu Site'])
+                ->to('breno140494@gmail.com')
+                ->subject('Assunto')
+                ->send('Minha mensagem');
+
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O emprestimo não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O empréstimo não pôde ser salvo. Por favor, tente novamente.'));
         }
 
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
@@ -134,7 +140,7 @@ return false;
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O emprestimo não pôde ser alterado. Por favor, tente novamente.'));
+            $this->Flash->error(__('O empréstimo não pôde ser alterado. Por favor, tente novamente.'));
         }
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
         $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
@@ -156,7 +162,7 @@ return false;
         if ($this->Emprestimos->delete($emprestimo)) {
             $this->Flash->success(__('Empréstimo excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('O emprestimo não pôde ser excluído. Por favor, tente novamente.'));
+            $this->Flash->error(__('O empréstimo não pôde ser excluído. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

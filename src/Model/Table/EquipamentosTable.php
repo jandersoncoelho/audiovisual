@@ -45,6 +45,7 @@ class EquipamentosTable extends Table
             'targetForeignKey' => 'acessorio_id',
             'joinTable' => 'equipamentos_acessorios'
         ]);
+
     }
 
     /**

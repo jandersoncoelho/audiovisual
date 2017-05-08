@@ -109,33 +109,6 @@
         <?php endif; ?>
     </div>
 
-    <div class="related">
-        <h4><?= __('Equipamentos Relacionados') ?></h4>
-        <?php if (!empty($acessorio->equipamentos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Nome') ?></th>
-                <th scope="col"><?= __('Número Patrimônio') ?></th>
-                <th scope="col"><?= __('Criado') ?></th>
-                <th scope="col"><?= __('Modificado') ?></th>
-                <th scope="col" class="actions"><?= __('Opções') ?></th>
-            </tr>
-            <?php foreach ($acessorio->equipamentos as $equipamentos): ?>
-            <tr>
-                <td><?= h($equipamentos->nome) ?></td>
-                <td><?= h($equipamentos->numeroPatrimonio) ?></td>
-                <td><?= h($equipamentos->created) ?></td>
-                <td><?= h($equipamentos->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('Detalhes'), ['controller' => 'Equipamentos', 'action' => 'view', $equipamentos->id]) ?>
-                    <?= $this->Html->link(__('Editar'), ['controller' => 'Equipamentos', 'action' => 'edit', $equipamentos->id]) ?>
-                    <?= $this->Form->postLink(__('Excluir'), ['controller' => 'Equipamentos', 'action' => 'delete', $equipamentos->id], ['confirm' => __('Tem certeza que deseja excluir este equipamento # {0}?', $equipamentos->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
 </div>
 
 

@@ -472,7 +472,7 @@ div.message.hidden {
 }
 
 .vertical-table td {
-    text-align: right;
+    text-align: left;
 }
 
 .content {
@@ -486,11 +486,11 @@ div.message.hidden {
 }
 
 /* Force equal height by overflowing */
-.content,
-#actions-sidebar {
+/*.content,
+/*#actions-sidebar {
     margin-bottom: -99999px;
     padding-bottom: 99999px;
-}
+}*/
 @media(max-width: 640px) {
     #actions-sidebar {
         padding-bottom: 2rem;

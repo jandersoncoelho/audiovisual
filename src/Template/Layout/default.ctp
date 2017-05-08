@@ -35,7 +35,7 @@ $cakeDescription = 'Audiovisual';
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -54,6 +54,7 @@ $cakeDescription = 'Audiovisual';
         </div>
     </nav>
 
+    <div class="tamNav">
     <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Opções') ?></li>
@@ -66,8 +67,11 @@ $cakeDescription = 'Audiovisual';
         <li><?= $this->Html->link(__('Acessórios'), ['controller' => 'Acessorios', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Ocorrências'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
     </ul>
-</nav>
+    </nav>
+</div>
+
     <?= $this->Flash->render() ?>
+
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>

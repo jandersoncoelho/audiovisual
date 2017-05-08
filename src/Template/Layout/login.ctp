@@ -10,8 +10,10 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
            <?= $this->Html->css('style.css') ?>
-           <?= $this->Html->script('index.js') ?>
-            <?= $this->Html->script('modernizr-custom.js') ?>
+          <?= $this->Html->script('modernizr-custom.js') ?>
+          <?= $this->Html->meta('icon') ?>
+    
+    <?= $this->Html->css('cake.css') ?>
 
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
