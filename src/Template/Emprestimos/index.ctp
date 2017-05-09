@@ -26,7 +26,7 @@
               
                 <td><?= h($emprestimo->nomeAtendente) ?></td>
                 <td><?= h($emprestimo->nomeSolicitante) ?></td>
-                <td><?= h($emprestimo->numeroPatrimonio) ?></td>
+                <td><?= $emprestimo->has('equipamento') ? $this->Html->link($emprestimo->equipamento->numeroPatrimonio, ['controller' => 'Equipamentos', 'action' => 'view', $emprestimo->equipamento->id]) : '' ?></td>
                 <td><?= h($emprestimo->dataRetirada) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Devolver'), ['action' => 'finish', $emprestimo->id]) ?>

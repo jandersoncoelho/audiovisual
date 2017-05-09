@@ -47,7 +47,13 @@ class EmprestimosTable extends Table
         ]);
 
          $this->belongsTo('Solicitantes');
-         $this->belongsTo('Equipamentos');
+         //$this->belongsTo('Equipamentos');
+        //$this->belongsTo('Usuarios');
+
+         $this->belongsTo('Equipamentos', [
+            'foreignKey' => 'equipamento_id',
+            'joinType' => 'INNER'
+        ]);
 
     }
 

@@ -21,7 +21,9 @@
 
             echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio'));
             //echo $this->form->input('nomeSolicitante', array('type'=>'select', 'options' => $usuarios->nome, 'label'=>'Selecione o Solicitante'));
-            //echo $this->Form->control('equipamento_id', array('type' => 'select', 'options' => $equipamentos ));
+            echo $this->Form->control('equipamento_id', array('type' => 'select', 'options' => $equipamentos ));
+
+            //echo $this->Form->control('atendente_id', array('type' => 'hidden', 'value'=> $usuarioLogado));
             echo $this->Form->control('nomeAtendente', array('type' => 'hidden', 'value'=> $usuarioLogado));
             echo $this->Form->control('situacao', array('type' => 'hidden', 'value' => 'Pendente'));
             date_default_timezone_set('America/Sao_Paulo');

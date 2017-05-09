@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('ID Empréstimo') ?></th>
-            <td><?= $this->Number->format($ocorrencia->idEmprestimo) ?></td>
+            <td><?= $ocorrencia->has('emprestimo') ? $this->Html->link($ocorrencia->emprestimo->id, ['controller' => 'Emprestimos', 'action' => 'view', $ocorrencia->emprestimo->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Criado') ?></th>

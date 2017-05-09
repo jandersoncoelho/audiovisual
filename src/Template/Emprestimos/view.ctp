@@ -22,7 +22,7 @@
         </tr>
           <tr>
             <th scope="row"><?= __('Número Patrimônio') ?></th>
-            <td><?= h($emprestimo->numeroPatrimonio) ?></td>
+            <td><?= $emprestimo->has('equipamento') ? $this->Html->link($emprestimo->equipamento->numeroPatrimonio, ['controller' => 'Equipamentos', 'action' => 'view', $emprestimo->equipamento->id]) : '' ?></td>
         </tr>
           <tr>
             <th scope="row"><?= __('Situação') ?></th>

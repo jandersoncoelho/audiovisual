@@ -20,6 +20,9 @@ class EmprestimosController extends AppController
 
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Equipamentos']
+        ];
 
        $pendentes = $this->Emprestimos->find('all', array(
         'conditions' => array('Emprestimos.situacao' => 'Pendente')
@@ -33,6 +36,9 @@ class EmprestimosController extends AppController
 
        public function finalizados()
     {
+        $this->paginate = [
+            'contain' => ['Equipamentos']
+        ];
     $devolvidos = $this->Emprestimos->find('all', array(
         'conditions' => array('Emprestimos.situacao' => 'Devolvido')
     ));
@@ -65,7 +71,7 @@ return false;
     public function view($id = null)
     {
         $emprestimo = $this->Emprestimos->get($id, [
-            'contain' => ['Acessorios', 'Ocorrencias']
+            'contain' => ['Acessorios', 'Ocorrencias', 'Equipamentos']
         ]);
 
         $this->set('emprestimo', $emprestimo);
@@ -103,11 +109,11 @@ return false;
             if ($this->Emprestimos->save($emprestimo)) {
                 $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
-                $email = new Email('default');
-                $email->from(['breno.parreira@live.com' => 'Meu Site'])
-                ->to('breno140494@gmail.com')
-                ->subject('Assunto')
-                ->send('Minha mensagem');
+                // $email = new Email('default');
+                // $email->from(['breno.parreira@live.com' => 'Meu Site'])
+                // ->to('breno140494@gmail.com')
+                // ->subject('Assunto')
+                // ->send('Minha mensagem');
 
                 return $this->redirect(['action' => 'index']);
             }

@@ -20,7 +20,7 @@
             <?php foreach ($ocorrencias as $ocorrencia): ?>
             <tr>
                 <td><?= $this->Number->format($ocorrencia->id) ?></td>
-                <td><?= $this->Number->format($ocorrencia->idEmprestimo) ?></td>
+                <td><?= $ocorrencia->has('emprestimo') ? $this->Html->link($ocorrencia->emprestimo->id, ['controller' => 'Emprestimos', 'action' => 'view', $ocorrencia->emprestimo->id]) : '' ?></td>
                 <td><?= h($ocorrencia->created) ?></td>
                 <td><?= h($ocorrencia->modified) ?></td>
                 <td class="actions">

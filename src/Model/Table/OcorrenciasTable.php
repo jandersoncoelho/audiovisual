@@ -37,6 +37,11 @@ class OcorrenciasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Emprestimos', [
+            'foreignKey' => 'idEmprestimo',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**

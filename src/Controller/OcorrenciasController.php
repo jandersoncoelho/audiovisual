@@ -18,7 +18,9 @@ class OcorrenciasController extends AppController
      */
     public function index()
     {
-        $ocorrencias = $this->paginate($this->Ocorrencias);
+        $ocorrencias = $this->paginate($this->Ocorrencias, [
+            'contain' => ['Emprestimos']
+            ]);
 
         $this->set(compact('ocorrencias'));
         $this->set('_serialize', ['ocorrencias']);
@@ -44,7 +46,7 @@ return false;
     public function view($id = null)
     {
         $ocorrencia = $this->Ocorrencias->get($id, [
-            'contain' => []
+            'contain' => ['Emprestimos']
         ]);
 
         $this->set('ocorrencia', $ocorrencia);

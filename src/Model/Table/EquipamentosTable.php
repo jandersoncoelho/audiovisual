@@ -46,6 +46,10 @@ class EquipamentosTable extends Table
             'joinTable' => 'equipamentos_acessorios'
         ]);
 
+        $this->hasMany('Emprestimos', [
+            'foreignKey' => 'equipamento_id'
+        ]);
+
     }
 
     /**
