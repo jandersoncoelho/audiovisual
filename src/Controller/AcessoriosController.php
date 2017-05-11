@@ -41,6 +41,16 @@ class AcessoriosController extends AppController
         $this->set('_serialize', ['acessorio']);
     }
 
+         public function isAuthorized($usuario)
+{
+    if (isset($usuario['tipo']) && $usuario['tipo'] === 'Administrador') {
+        return true;
+    }else if(in_array($this->request->action, ['index', 'logout', 'view'])){
+    return true;
+}
+return false;
+}
+
     /**
      * Add method
      *

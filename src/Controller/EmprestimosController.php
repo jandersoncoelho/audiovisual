@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Mailer\Email;
+use Cake\Mailer\MailerAwareTrait;
 
 /**
  * Emprestimos Controller
@@ -11,6 +11,7 @@ use Cake\Mailer\Email;
  */
 class EmprestimosController extends AppController
 {
+    use MailerAwareTrait;
 
     /**
      * Index method
@@ -109,11 +110,9 @@ return false;
             if ($this->Emprestimos->save($emprestimo)) {
                 $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
-                // $email = new Email('default');
-                // $email->from(['breno.parreira@live.com' => 'Meu Site'])
-                // ->to('breno140494@gmail.com')
-                // ->subject('Assunto')
-                // ->send('Minha mensagem');
+               
+                $this->getMailer('Usuarios')->send('emprestar', [$emprestimo]);
+
 
                 return $this->redirect(['action' => 'index']);
             }

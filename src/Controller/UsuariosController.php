@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\MailerAwareTrait;
 
 /**
  * Usuarios Controller
@@ -10,7 +11,7 @@ use App\Controller\AppController;
  */
 class UsuariosController extends AppController
 {
-
+    use MailerAwareTrait;
     /**
      * Index method
      *
@@ -23,17 +24,6 @@ class UsuariosController extends AppController
         $this->set(compact('usuarios'));
         $this->set('_serialize', ['usuarios']);
     }
-
-// public function isAuthorized($usuario) {
-//     if (parent::isAuthorized($usuario)) {
-//         if ($this->action === 'index') {
-//             // Todos os usuários registrados podem criar posts
-//             return true;
-//         }
-       
-//     }
-//     return false;
-// }    
 
      public function login()
     {
@@ -97,6 +87,8 @@ return false;
         if ($this->request->is('post')) {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
+
+                $this->getMailer('Usuarios')->send('welcome', [$usuario]);
                 $this->Flash->success(__('Usuário cadastrado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);

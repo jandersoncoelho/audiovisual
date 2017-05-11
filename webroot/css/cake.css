@@ -379,7 +379,7 @@ table tr th {
 }
 
 table tr:nth-of-type(even) {
-    background: none;
+    background: #fafafa;
 }
 
 fieldset {
@@ -487,10 +487,12 @@ div.message.hidden {
 
 /* Force equal height by overflowing */
 /*.content,
-/*#actions-sidebar {
+#actions-sidebar {
     margin-bottom: -99999px;
     padding-bottom: 99999px;
 }*/
+
+
 @media(max-width: 640px) {
     #actions-sidebar {
         padding-bottom: 2rem;

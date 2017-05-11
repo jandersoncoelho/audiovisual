@@ -176,15 +176,15 @@ return [
      * appropriate file to src/Mailer/Transport. Transports should be named
      * 'YourTransport.php', where 'Your' is the name of the transport.
      */
-    'EmailTransport' => [
+      'EmailTransport' => [
         'default' => [
             'className' => 'Mail',
             // The following keys are used in SMTP transports
             'host' => 'localhost',
             'port' => 25,
             'timeout' => 30,
-            'username' => 'root',
-            'password' => '',
+            'username' => 'user',
+            'password' => 'secret',
             'client' => null,
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
@@ -203,12 +203,11 @@ return [
     'Email' => [
         'default' => [
             'transport' => 'default',
-            'from' => 'breno140494@gmail.com',
+            'from' => 'you@localhost',
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
         ],
     ],
-
     /**
      * Connection information used by the ORM to connect
      * to your application's datastores.

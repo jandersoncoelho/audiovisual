@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class AddEquipamentoIdIdexToEmprestimos extends AbstractMigration
+class AddEquipamentoIdToEmprestimos extends AbstractMigration
 {
     /**
      * Change Method.
@@ -18,20 +18,12 @@ class AddEquipamentoIdIdexToEmprestimos extends AbstractMigration
             'limit' => 11,
             'null' => false,
         ]);
-        $table->addIndex([
-            'equipamento_id',
-        ], [
-            'name' => 'BY_EQUIPAMENTO_ID',
-            'unique' => false,
-        ]);
 
-        $table->addForeignKey(
-                'equipamento_id',
-                'equipamentos',
-                'id'
+        $table->addIndex(
+            [
+            'equipamento_id'
+            ]
             );
-
         $table->update();
     }
 }
-
