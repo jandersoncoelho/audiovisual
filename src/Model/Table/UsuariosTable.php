@@ -37,6 +37,16 @@ class UsuariosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+         $this->hasMany('Emprestimos', [
+           'foreignKey' => 'atendente_id'
+        ]);
+
+        // $this->belongsToMany('Emprestimos', [
+        //     'foreignKey' => 'usuario_id',
+        //     'targetForeignKey' => 'emprestimo_id',
+        //     'joinTable' => 'emprestimos_usuarios'
+        // ]);
     }
 
     /**

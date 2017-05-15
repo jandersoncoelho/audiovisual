@@ -17,40 +17,14 @@
         </tr>  
         <tr>
             <th scope="row"><?= __('Criado') ?></th>
-            <td><?= h($acessorio->created) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($acessorio->created))) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Modificado') ?></th>
-            <td><?= h($acessorio->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorio->modified))) ?></td>
         </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Empréstimos Relacionados') ?></h4>
-        <?php if (!empty($acessorio->emprestimos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Atendente') ?></th>
-                <th scope="col"><?= __('Solicitante') ?></th>
-                <th scope="col"><?= __('Número Patrimônio') ?></th>
-                <th scope="col"><?= __('Situação') ?></th>
-                <th scope="col" class="actions"><?= __('Opções') ?></th>
-            </tr>
-            <?php foreach ($acessorio->emprestimos as $emprestimos): ?>
-            <tr>
-                <td><?= h($emprestimos->nomeAtendente) ?></td>
-                <td><?= h($emprestimos->nomeSolicitante) ?></td>
-                <td><?= h($emprestimos->numeroPatrimonio) ?></td>
-                <td><?= h($emprestimos->situacao) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('Detalhes'), ['controller' => 'Emprestimos', 'action' => 'view', $emprestimos->id]) ?>
-                    <?= $this->Html->link(__('Editar'), ['controller' => 'Emprestimos', 'action' => 'edit', $emprestimos->id]) ?>
-                    <?= $this->Form->postLink(__('Excluir'), ['controller' => 'Emprestimos', 'action' => 'delete', $emprestimos->id], ['confirm' => __('Tem certeza que deseja excluir este empréstimo # {0}?', $emprestimos->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
+   
     <div class="related">
         <h4><?= __('Equipamentos Relacionados') ?></h4>
         <?php if (!empty($acessorio->equipamentos)): ?>
@@ -66,8 +40,8 @@
             <tr>
                 <td><?= h($equipamentos->nome) ?></td>
                 <td><?= h($equipamentos->numeroPatrimonio) ?></td>
-                <td><?= h($equipamentos->created) ?></td>
-                <td><?= h($equipamentos->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($equipamentos->created))) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($equipamentos->modified))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['controller' => 'Equipamentos', 'action' => 'view', $equipamentos->id]) ?>
                     <?= $this->Html->link(__('Editar'), ['controller' => 'Equipamentos', 'action' => 'edit', $equipamentos->id]) ?>

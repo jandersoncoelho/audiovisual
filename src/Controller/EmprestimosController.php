@@ -22,7 +22,7 @@ class EmprestimosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Equipamentos']
+            'contain' => ['Equipamentos', 'Usuarios', 'Solicitantes']
         ];
 
        $pendentes = $this->Emprestimos->find('all', array(
@@ -38,7 +38,7 @@ class EmprestimosController extends AppController
        public function finalizados()
     {
         $this->paginate = [
-            'contain' => ['Equipamentos']
+            'contain' => ['Equipamentos', 'Usuarios', 'Solicitantes']
         ];
     $devolvidos = $this->Emprestimos->find('all', array(
         'conditions' => array('Emprestimos.situacao' => 'Devolvido')
@@ -72,10 +72,16 @@ return false;
     public function view($id = null)
     {
         $emprestimo = $this->Emprestimos->get($id, [
-            'contain' => ['Acessorios', 'Ocorrencias', 'Equipamentos']
+            'contain' => ['Acessorios', 'Ocorrencias', 'Equipamentos', 'Usuarios', 'Solicitantes']
         ]);
 
-        $this->set('emprestimo', $emprestimo);
+    // //Busca o nome do responsável pelo ID
+        $resp = $this->Emprestimos->Usuarios->findById($emprestimo->responsavel_id);
+        foreach ($resp as $responsavel) {
+        }            
+
+            
+        $this->set(compact('emprestimo', 'responsavel'));
         $this->set('_serialize', ['emprestimo']);
     }
 
@@ -87,11 +93,26 @@ return false;
 
     public function finish($id = null){
         $emprestimo = $this->Emprestimos->get($id, [
-            'contain' => ['Acessorios']
+            'contain' => ['Acessorios', 'Usuarios']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])  && $emprestimo->situacao == 'Pendente') {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
             if ($this->Emprestimos->save($emprestimo)) {
+
+            $solic = $this->Emprestimos->Solicitantes->findById($emprestimo->solicitante_id);
+            foreach ($solic as $solicitante) {
+            }
+
+            $equip = $this->Emprestimos->Equipamentos->findById($emprestimo->equipamento_id);
+            foreach ($equip as $equipamento) {
+            }
+            
+            $acess = $this->Emprestimos->Acessorios->findById($emprestimo->emprestimo_id);
+            foreach ($acess as $acessorio) {
+            }
+
+            $this->getMailer('Emprestimo')->send('receber', [$emprestimo, $solicitante, $equipamento]);
+
                 $this->Flash->success(__('Empréstimo finalizado com sucesso.'));
 
                 return $this->redirect(['action' => 'finalizados']);
@@ -107,12 +128,25 @@ return false;
         $emprestimo = $this->Emprestimos->newEntity();
         if ($this->request->is('post')) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
+
+            //$eq = $this->Emprestimos->Equipamentos->get($this->request->data['equipamento_id']);
             if ($this->Emprestimos->save($emprestimo)) {
-                $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
+            $solic = $this->Emprestimos->Solicitantes->findById($emprestimo->solicitante_id);
+            foreach ($solic as $solicitante) {
+            }
+
+            $equip = $this->Emprestimos->Equipamentos->findById($emprestimo->equipamento_id);
+            foreach ($equip as $equipamento) {
+            }
+            
+            $acess = $this->Emprestimos->Acessorios->findById($emprestimo->emprestimo_id);
+            foreach ($acess as $acessorio) {
+            }
+
+            $this->getMailer('Emprestimo')->send('emprestar', [$emprestimo, $solicitante, $equipamento]);
                
-                $this->getMailer('Usuarios')->send('emprestar', [$emprestimo]);
-
+                $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -122,7 +156,8 @@ return false;
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
         $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
         $equipamentos = $this->Emprestimos->Equipamentos->find('list', ['limit' => 200]);
-        $this->set(compact('emprestimo', 'acessorios', 'solicitantes', 'equipamentos'));
+        $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
+        $this->set(compact('emprestimo', 'acessorios', 'solicitantes', 'equipamentos', 'usuarios'));
         $this->set('_serialize', ['emprestimo']);
     }
 

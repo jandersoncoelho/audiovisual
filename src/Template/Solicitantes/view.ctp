@@ -30,13 +30,12 @@
             <th scope="row"><?= __('Email') ?></th>
             <td><?= h($solicitante->email) ?></td>
         </tr>
-          <tr>
             <th scope="row"><?= __('Criado') ?></th>
-            <td><?= h($solicitante->created) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($solicitante->created))) ?></td>
         </tr>
-          <tr>
+        <tr>
             <th scope="row"><?= __('Modificado') ?></th>
-            <td><?= h($solicitante->modified) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($solicitante->modified))) ?></td>
         </tr>
     </table>
 </div>

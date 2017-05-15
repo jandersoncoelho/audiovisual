@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class AddAtendenteIdIndexToEmprestimos extends AbstractMigration
+class RemoveNomeSolicitanteFromEmprestimos extends AbstractMigration
 {
     /**
      * Change Method.
@@ -13,19 +13,7 @@ class AddAtendenteIdIndexToEmprestimos extends AbstractMigration
     public function change()
     {
         $table = $this->table('emprestimos');
-        $table->addColumn('atendente_id', 'integer', [
-            'default' => null,
-            'limit' => 11,
-            'null' => false,
-        ]);
-
-            $table->addForeignKey(
-                'atendente_id',
-                'usuarios',
-                'id'
-            );
-
+        $table->removeColumn('nomeSolicitante');
         $table->update();
     }
 }
-

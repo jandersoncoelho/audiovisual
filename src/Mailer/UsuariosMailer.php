@@ -23,18 +23,9 @@ class UsuariosMailer extends Mailer
     	->template('default')
     	->layout('default')
         ->viewVars(['nome' => $usuario->nome])
-        ->subject(sprintf('Olá %s', $usuario->nome, 'você foi cadastrado no sitema de controle audiovisual.'));
-
+        ->subject(sprintf('Olá %s', $usuario->nome, 'você foi cadastrado no sitema de controle audiovisual.'))
+        
 
     }
 
-    public function emprestar($emprestimo){
-            $this->to($emprestimo->email)
-        ->profile('audiovisual')
-        ->emailFormat('html')
-        ->template('default')
-        ->layout('default')
-        ->viewVars(['nome' => $usuario->nome])
-        ->subject(sprintf('Olá %s', $usuario->nome, 'você foi cadastrado no sitema de controle audiovisual.'));
-    }
 }

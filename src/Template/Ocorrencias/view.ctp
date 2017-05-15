@@ -17,11 +17,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Criado') ?></th>
-            <td><?= h($ocorrencia->created) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($ocorrencia->created))) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Modificado') ?></th>
-            <td><?= h($ocorrencia->modified) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($ocorrencia->modified))) ?></td>
         </tr>
     </table>
     <div class="row">

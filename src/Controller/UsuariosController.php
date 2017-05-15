@@ -88,7 +88,7 @@ return false;
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
 
-                $this->getMailer('Usuarios')->send('welcome', [$usuario]);
+                //$this->getMailer('Usuarios')->send('welcome', [$usuario]);
                 $this->Flash->success(__('Usuário cadastrado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);

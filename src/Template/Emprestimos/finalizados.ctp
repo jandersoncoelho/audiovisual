@@ -13,9 +13,9 @@
         <thead>
             <tr>
              
-                <th scope="col"><?= $this->Paginator->sort('nomeAtendente', array('label' => 'Atendente' )) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nomeSolicitante', array('label' => 'Solicitante' )) ?></th>
-                <th scope="col"><?= $this->Paginator->sort('numeroPatrimonio', array('label' => 'Número Patrimônio' )) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('atendente_id', array('label' => 'Atendente' )) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('solicitante_id', array('label' => 'Solicitante' )) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('equipamento_id', array('label' => 'Número Patrimônio' )) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('dataDevolucao', array('label' => 'Devolução' )) ?></th>
                 <th scope="col" class="actions"><?= __('Opções') ?></th>
             </tr>
@@ -24,10 +24,12 @@
             <?php foreach ($devolvidos as $emprestimo): ?>
             <tr>
               
-                <td><?= h($emprestimo->nomeAtendente) ?></td>
-                <td><?= h($emprestimo->nomeSolicitante) ?></td>
+                 <td><?= $emprestimo->has('usuario') ? $this->Html->link($emprestimo->usuario->nome, ['controller' => 'Usuarios', 'action' => 'view', $emprestimo->usuario->id]) : '' ?></td>
+
+                <td><?= $emprestimo->has('solicitante') ? $this->Html->link($emprestimo->solicitante->nome, ['controller' => 'Solicitantes', 'action' => 'view', $emprestimo->solicitante->id]) : '' ?></td>
+
                 <td><?= $emprestimo->has('equipamento') ? $this->Html->link($emprestimo->equipamento->numeroPatrimonio, ['controller' => 'Equipamentos', 'action' => 'view', $emprestimo->equipamento->id]) : '' ?></td>
-                <td><?= h($emprestimo->dataDevolucao) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($emprestimo->dataDevolucao))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $emprestimo->id]) ?>
                 </td>

@@ -30,28 +30,37 @@
         </tr> 
         <tr>
             <th scope="row"><?= __('Atendente') ?></th>
-            <td><?= h($emprestimo->nomeAtendente) ?></td>
+            <td><?= $emprestimo->has('usuario') ? $this->Html->link($emprestimo->usuario->nome, ['controller' => 'Usuarios', 'action' => 'view', $emprestimo->usuario->id]) : '' ?></td>
         </tr>
          <tr>
             <th scope="row"><?= __('Solicitante') ?></th>
-            <td><?= h($emprestimo->nomeSolicitante) ?></td>
+             <td><?= $emprestimo->has('solicitante') ? $this->Html->link($emprestimo->solicitante->nome, ['controller' => 'Solicitantes', 'action' => 'view', $emprestimo->solicitante->id]) : '' ?></td>
         </tr>
         <tr>
+
+            <!-- Se o empréstimo não estiver finalizado não imprime o nome do responsável e do solicitante -->
+            <?php if ($emprestimo->situacao == 'Devolvido') { ?>  
             <th scope="row"><?= __('Responsável pela Devolução') ?></th>
-            <td><?= h($emprestimo->nomeResponsavel) ?></td>
+            <td><?= $emprestimo->has('usuario') ? $this->Html->link($responsavel->nome, ['controller' => 'Usuarios', 'action' => 'view', $responsavel->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Solicitante/Aluno que Realizou a Devolução') ?></th>
             <td><?= h($emprestimo->nomeDevolveu) ?></td>
         </tr>        
+        <?php } ?>
+
         <tr>
             <th scope="row"><?= __('Data Retirada') ?></th>
-            <td><?= h($emprestimo->dataRetirada) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($emprestimo->dataRetirada))) ?></td>
         </tr>
         <tr>
+
+            <!-- Se o empréstimo não estiver finalizado não imprime a data de devolução -->
+            <?php if ($emprestimo->situacao == 'Devolvido') { ?> 
             <th scope="row"><?= __('Data Devolução') ?></th>
-            <td><?= h($emprestimo->dataDevolucao) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($emprestimo->dataDevolucao))) ?></td>
         </tr>
+        <?php } ?>
     </table>
     <div class="related">
         <h4><?= __('Acessórios Relacionados') ?></h4>
@@ -68,8 +77,8 @@
             <tr>
                 <td><?= h($acessorios->id) ?></td>
                 <td><?= h($acessorios->nome) ?></td>
-                <td><?= h($acessorios->created) ?></td>
-                <td><?= h($acessorios->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorios->created))) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorios->modified))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['controller' => 'Acessorios', 'action' => 'view', $acessorios->id]) ?>
                     <?= $this->Html->link(__('Editar'), ['controller' => 'Acessorios', 'action' => 'edit', $acessorios->id]) ?>

@@ -54,7 +54,6 @@ $cakeDescription = 'Audiovisual';
         </div>
     </nav>
 
-    <div class="tamNav">
     <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Opções') ?></li>
@@ -68,7 +67,6 @@ $cakeDescription = 'Audiovisual';
         <li><?= $this->Html->link(__('Ocorrências'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
     </ul>
     </nav>
-</div>
 
     <?= $this->Flash->render() ?>
 

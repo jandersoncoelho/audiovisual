@@ -28,12 +28,12 @@
             <td><?= h($usuario->tipo) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($usuario->created) ?></td>
+            <th scope="row"><?= __('Criado') ?></th>
+            <td><?= h(date('d/m/Y H:i', strtotime($usuario->created))) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($usuario->modified) ?></td>
+            <th scope="row"><?= __('Modificado') ?></th>
+            <td><?= h(date('d/m/Y H:i', strtotime($usuario->modified))) ?></td>
         </tr>
     </table>
 </div>

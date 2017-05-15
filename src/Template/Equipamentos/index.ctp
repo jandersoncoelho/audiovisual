@@ -25,8 +25,8 @@
             <tr>
                 <td><?= h($equipamento->nome) ?></td>
                 <td><?= h($equipamento->numeroPatrimonio) ?></td>
-                <td><?= h($equipamento->created) ?></td>
-                <td><?= h($equipamento->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($equipamento->created))) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($equipamento->modified))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $equipamento->id]) ?>
                     <?= $this->Html->link(__('Editar'), ['action' => 'edit', $equipamento->id]) ?>

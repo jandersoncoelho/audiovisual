@@ -20,21 +20,22 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($pendentes as $emprestimo): 
-            if ($emprestimo->situacao == 'Pendente') { ?>
+            <?php foreach ($pendentes as $emprestimo): ?>
             <tr>
-              
-                <td><?= h($emprestimo->nomeAtendente) ?></td>
-                <td><?= h($emprestimo->nomeSolicitante) ?></td>
+                <td><?= $emprestimo->has('usuario') ? $this->Html->link($emprestimo->usuario->nome, ['controller' => 'Usuarios', 'action' => 'view', $emprestimo->usuario->id]) : '' ?></td>
+
+                <td><?= $emprestimo->has('solicitante') ? $this->Html->link($emprestimo->solicitante->nome, ['controller' => 'Solicitantes', 'action' => 'view', $emprestimo->solicitante->id]) : '' ?></td>
+
                 <td><?= $emprestimo->has('equipamento') ? $this->Html->link($emprestimo->equipamento->numeroPatrimonio, ['controller' => 'Equipamentos', 'action' => 'view', $emprestimo->equipamento->id]) : '' ?></td>
-                <td><?= h($emprestimo->dataRetirada) ?></td>
+
+                <td><?= h(date('d/m/Y H:i', strtotime($emprestimo->dataRetirada))) ?></td>
+
                 <td class="actions">
                     <?= $this->Html->link(__('Devolver'), ['action' => 'finish', $emprestimo->id]) ?>
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $emprestimo->id]) ?>
                 
                 </td>
             </tr>
-            <?php } ?>
             <?php endforeach; ?>
         </tbody>
     </table>

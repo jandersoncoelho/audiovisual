@@ -1,7 +1,7 @@
 <?php
 use Migrations\AbstractMigration;
 
-class AddAtendenteIdIndexToEmprestimos extends AbstractMigration
+class AddAtendenteIdToEmprestimos extends AbstractMigration
 {
     /**
      * Change Method.
@@ -18,14 +18,12 @@ class AddAtendenteIdIndexToEmprestimos extends AbstractMigration
             'limit' => 11,
             'null' => false,
         ]);
-
-            $table->addForeignKey(
-                'atendente_id',
-                'usuarios',
-                'id'
-            );
-
+        $table->addIndex([
+            'atendente_id',
+        ], [
+            'name' => 'BY_ATENDENTE_ID',
+            'unique' => false,
+        ]);
         $table->update();
     }
 }
-

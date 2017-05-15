@@ -46,12 +46,18 @@ class EmprestimosTable extends Table
             'joinTable' => 'emprestimos_acessorios'
         ]);
 
-         $this->belongsTo('Solicitantes');
-         //$this->belongsTo('Equipamentos');
-        //$this->belongsTo('Usuarios');
-
          $this->belongsTo('Equipamentos', [
             'foreignKey' => 'equipamento_id',
+            'joinType' => 'INNER'
+        ]);
+
+          $this->belongsTo('Usuarios', [
+            'foreignKey' => 'atendente_id',
+            'joinType' => 'INNER'
+        ]);
+
+          $this->belongsTo('Solicitantes', [
+            'foreignKey' => 'solicitante_id',
             'joinType' => 'INNER'
         ]);
 
@@ -68,21 +74,6 @@ class EmprestimosTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-
-       
-            $validator
-            ->requirePresence('nomeAtendente', 'create')
-            ->notEmpty('nomeAtendente');
-
-        $validator
-            ->requirePresence('nomeSolicitante', 'create')
-            ->notEmpty('nomeSolicitante');
-
-        $validator
-            ->allowEmpty('nomeResponsavel');
-
-        $validator
-            ->allowEmpty('numeroPatrimonio');
 
         $validator
             ->allowEmpty('nomeDevolveu');

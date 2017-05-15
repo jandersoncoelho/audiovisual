@@ -21,8 +21,8 @@
             <tr>
                 <td><?= $this->Number->format($ocorrencia->id) ?></td>
                 <td><?= $ocorrencia->has('emprestimo') ? $this->Html->link($ocorrencia->emprestimo->id, ['controller' => 'Emprestimos', 'action' => 'view', $ocorrencia->emprestimo->id]) : '' ?></td>
-                <td><?= h($ocorrencia->created) ?></td>
-                <td><?= h($ocorrencia->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($ocorrencia->created))) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($ocorrencia->modified))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $ocorrencia->id]) ?>
                     <?= $this->Html->link(__('Editar'), ['action' => 'edit', $ocorrencia->id]) ?>

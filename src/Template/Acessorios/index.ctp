@@ -25,8 +25,8 @@
             <tr>
                 <td><?= $this->Number->format($acessorio->id) ?></td>
                 <td><?= h($acessorio->nome) ?></td>
-                <td><?= h($acessorio->created) ?></td>
-                <td><?= h($acessorio->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorio->created))) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorio->modified))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['action' => 'view', $acessorio->id]) ?>
                     <?= $this->Html->link(__('Editar'), ['action' => 'edit', $acessorio->id]) ?>

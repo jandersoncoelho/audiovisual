@@ -9,23 +9,15 @@
     <fieldset>
         <legend><?= __('Novo Empréstimo') ?></legend>
 
-        <label>Selecione o Solicitante</label>
-        <select name="nomeSolicitante">
-        <?php
-    foreach ($solicitantes as $solicitante) 
-    { ?>
-        <option value='<?php echo $solicitante; ?>'><?php echo $solicitante; ?></option> 
-    <?php } ?>
-    </select>
     <?php
+            echo $this->Form->control('solicitante_id', array('type' => 'select', 'label' => 'Selecione o Solicitante', 'options' => $solicitantes ));
 
-            echo $this->Form->control('numeroPatrimonio', array('label' => 'Número Patrimônio'));
-            //echo $this->form->input('nomeSolicitante', array('type'=>'select', 'options' => $usuarios->nome, 'label'=>'Selecione o Solicitante'));
-            echo $this->Form->control('equipamento_id', array('type' => 'select', 'options' => $equipamentos ));
+            echo $this->Form->control('equipamento_id', array('type' => 'select', 'label' => 'Selecione o Equipamento', 'options' => $equipamentos ));
 
-            //echo $this->Form->control('atendente_id', array('type' => 'hidden', 'value'=> $usuarioLogado));
-            echo $this->Form->control('nomeAtendente', array('type' => 'hidden', 'value'=> $usuarioLogado));
+            echo $this->Form->control('atendente_id', array('type' => 'hidden', 'value'=> $idLogado));
+      
             echo $this->Form->control('situacao', array('type' => 'hidden', 'value' => 'Pendente'));
+
             date_default_timezone_set('America/Sao_Paulo');
             $dataRetirada = date('Y-m-d H:i');
             echo $this->Form->control('dataRetirada', array('type' => 'hidden', 'value'=> $dataRetirada));

@@ -22,11 +22,11 @@
        
         <tr>
             <th scope="row"><?= __('Criado') ?></th>
-            <td><?= h($equipamento->created) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($equipamento->created))) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Modificado') ?></th>
-            <td><?= h($equipamento->modified) ?></td>
+            <td><?= h(date('d/m/Y H:i', strtotime($equipamento->modified))) ?></td>
         </tr>
     </table>
     <div class="related">
@@ -44,8 +44,8 @@
             <tr>
                 <td><?= h($acessorios->id) ?></td>
                 <td><?= h($acessorios->nome) ?></td>
-                <td><?= h($acessorios->created) ?></td>
-                <td><?= h($acessorios->modified) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorios->created))) ?></td>
+                <td><?= h(date('d/m/Y H:i', strtotime($acessorios->modified))) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Detalhes'), ['controller' => 'Acessorios', 'action' => 'view', $acessorios->id]) ?>
                     <?= $this->Html->link(__('Editar'), ['controller' => 'Acessorios', 'action' => 'edit', $acessorios->id]) ?>

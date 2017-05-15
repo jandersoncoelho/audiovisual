@@ -37,6 +37,10 @@ class SolicitantesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Emprestimos', [
+            'foreignKey' => 'solicitante_id'
+        ]);
     }
 
     /**
