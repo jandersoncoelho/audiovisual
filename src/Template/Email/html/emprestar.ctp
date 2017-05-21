@@ -18,7 +18,9 @@ $content = explode("\n", $content);
 
 foreach ($content as $line):
     
-	echo '<p> Equipamento: '. $nomeEquipamento . ' com número de patrimônio ' . $numeroPatrimonio . "</p>\n";
+	echo '<p> Equipamento: '. $nomeEquipamento . "</p>\n";
+	
+	echo '<p> Número Patrimônio: ' . $numeroPatrimonio . "</p>\n";
 	
 	echo "Acessórios:";
 	foreach ($acessorios as $acessorio) {

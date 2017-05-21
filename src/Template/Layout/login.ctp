@@ -9,19 +9,21 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,200' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
-           <?= $this->Html->css('style.css') ?>
-          <?= $this->Html->script('modernizr-custom.js') ?>
+           
+          <?= $this->Html->css('style.css') ?>
           <?= $this->Html->meta('icon') ?>
     
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->script('modernizr-custom.js') ?>
+    
 
         <?= $this->fetch('css') ?>
         <?= $this->fetch('script') ?>
         <?= $this->fetch('meta') ?>
 
     </head>
-
-    <body>
+    <body class="body">
 
          <?= $this->Flash->render() ?>
         <div class="container clearfix">

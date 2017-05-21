@@ -125,6 +125,8 @@ return false;
 
     public function add()
     {
+        //$test_var= $this->request['pass'];
+        //echo $test_var;
         $emprestimo = $this->Emprestimos->newEntity();
         if ($this->request->is('post')) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
@@ -154,6 +156,10 @@ return false;
         }
 
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
+
+        $js_array = json_encode($acessorios);
+            echo "<script>var javascript_array = ". $js_array . ";\n</script>";
+
         $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
         $equipamentos = $this->Emprestimos->Equipamentos->find('list', ['limit' => 200]);
         $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);

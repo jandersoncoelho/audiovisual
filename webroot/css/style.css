@@ -102,11 +102,25 @@ body .article h1 {
   box-sizing: border-box;
 }
 
+.img{
+  margin: 0 auto;
+  position: fixed;
+  top: 36%;
+  left: 25%;
+  width: 400px;
+  height: 350px;
+ background: url("../img/logo2.png") no-repeat; 
+}
+
+.body{
+  background: url("../img/city-wallpaper-18.jpg") no-repeat fixed;
+}
+
 .form {
   margin: 0 auto;
   position: fixed;
   top: 35%;
-  left: 50%;
+  left: 62%;
   -moz-transform: translate3d(-50%, 0, 0);
   -ms-transform: translate3d(-50%, 0, 0);
   -webkit-transform: translate3d(-50%, 0, 0);
@@ -275,4 +289,20 @@ body .article h1 {
 }
 .topbar.success .input::-webkit-input-placeholder {
   color: white;
+}
+
+.titulo{
+  font-size: 2.6rem;
+  font-family: Raleway;
+  font-weight: 200;
+  margin-top: 110px;
+  text-align: center;
+  position: center;
+  color: #363636;
+
+}
+
+body {
+    background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;
+    margin: 0;
 }
