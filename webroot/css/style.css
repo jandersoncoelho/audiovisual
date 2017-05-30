@@ -292,17 +292,14 @@ body .article h1 {
 }
 
 .titulo{
+  position: fixed;
   font-size: 2.6rem;
   font-family: Raleway;
   font-weight: 200;
-  margin-top: 110px;
+  
   text-align: center;
-  position: center;
   color: #363636;
+  left: 37%;
+  top: 20%;
 
-}
-
-body {
-    background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;
-    margin: 0;
 }

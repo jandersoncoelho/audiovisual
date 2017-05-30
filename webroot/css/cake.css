@@ -4,21 +4,21 @@ a.disabled {
 }
 
 a:hover {
-    color: #15848F;
+    color: #5D9F52;
 }
 
 
 
 a {
-    color: #1798A5;
+    color: #5D9F52;
 }
 
 .side-nav li a:not(.button) {
-    color: #15848F;
+    color: #5D9F52;
 }
 
 .side-nav li a:not(.button):hover {
-    color: #15848F;
+    color: #5D9F52;
 }
 
 header {
@@ -36,7 +36,7 @@ header .header-title {
 }
 
 legend {
-    color:#15848F;
+    color:#5D9F52;
 }
 
 .row {
@@ -45,13 +45,13 @@ legend {
 
 .actions.columns {
     margin-top:1rem;
-    border-left: 5px solid #15848F;
+    border-left: 5px solid #5D9F52;
     padding-left: 15px;
     padding: 32px 20px;
 }
 
 .actions.columns h3 {
-    color:#15848F;
+    color:#5D9F52;
 }
 
 .related table {
@@ -140,7 +140,7 @@ ul.pagination .disabled:hover a {
 }
 .required > label:after {
     content: ' *';
-    color: #C3232D;
+    color: #910009;
 }
 
 select[multiple] {
@@ -162,7 +162,7 @@ input[type=radio] {
 
 .error label,
 .error label.error {
-    color: #C3232D;
+    color: #910009;
 }
 
 .view h2 {
@@ -239,7 +239,7 @@ p.notice {
 .cake-error,
 p.error {
     color: #fff;
-    background: #C3232D;
+    background: #910009;
 }
 
 pre {
@@ -321,20 +321,20 @@ pre {
 }
 
 .top-bar.expanded .title-area {
-    background: #01545b;
+    background: #386638;
 }
 
 .top-bar.expanded, .top-bar,.top-bar-section ul li,.top-bar-section li:not(.has-form) a:not(.button) {
-    background: #116d76;
+    background: #5D9F52;
 }
 
 .top-bar-section li:not(.has-form) a:not(.button):hover {
-    background-color: #308e97;
-    background: #308e97;
+    background-color: #4c8e29;
+    background: #4c8e29;
 }
 
 .side-nav li.heading {
-    color: #1798A5;
+    color: #5D9F52;
     font-size: 0.875rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -369,15 +369,15 @@ table tr {
 }
 
 table thead tr {
-    border-bottom: 1px solid #1798A5;
+    border-bottom: 1px solid #5D9F52;
 }
 
 table tr th {
     padding: 0.5625rem 0.625rem;
     font-size: 0.875rem;
-    color: #1798A5;
+    color: #5D9F52;
     text-align: left;
-    border-bottom: 2px solid #1798A5;
+    border-bottom: 2px solid #5D9F52;
 }
 
 table tr:nth-of-type(even) {
@@ -391,7 +391,7 @@ fieldset {
 }
 
 fieldset legend {
-    border-bottom: 2px solid #1798A5;
+    border-bottom: 2px solid #5D9F52;
     width: 100%;
     line-height: 2rem;
 }
@@ -408,7 +408,7 @@ fieldset legend {
 }
 
 button {
-    background: #15848F;
+    background: #5D9F52;
 }
 
 div.message {
@@ -447,13 +447,13 @@ div.message:before {
 }
 
 div.message.error {
-    background-color: #C3232D;
+    background-color: #910009;
     color: #FFF;
 }
 
 div.message.error:before {
     padding: 11px 16px 14px 7px;
-    color: #C3232D;
+    color: #910009;
     content: "x";
 }
 div.message.hidden {
@@ -464,7 +464,7 @@ div.message.hidden {
 .vertical-table th {
     padding: 0.5625rem 0.625rem;
     font-size: 0.875rem;
-    color: #1798A5;
+    color: #5D9F52;
     border: none;
     text-align: left;
 }
@@ -503,20 +503,20 @@ div.message.hidden {
 }
 
 .content h3 {
-    color: #be140b;
+    color: #386638;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
 }
 
 .content h4 {
-    color: #be140b;
+    color: #386638;
     padding-bottom: 0.5rem;
     margin-bottom: 20px;
-    border-bottom: 2px solid #be140b;
+    border-bottom: 2px solid #386638;
 }
 
 .content .related h4 {
-    color: #4d8f97;
+    color: #386638;
     padding-bottom: 0.5rem;
     margin-top: 20px;
     margin-bottom: 10px;

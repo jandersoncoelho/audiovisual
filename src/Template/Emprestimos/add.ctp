@@ -16,23 +16,13 @@
     $teste = json_encode($acessorios);
             echo "<script>var teste = ". $teste . ";\n</script>";
 
-//       $i = 0;
-//     $nomeAcessorios;
-// foreach ($acessorios as $ac){
-//   //echo $ac;
-//   $nomeAcessorios[$i] = $ac;
-//   echo $nomeAcessorios[$i];
-//   $i++;
-// }
-// $string_array = implode("|", $nomeAcessorios);
-
-
-//echo '<script>var nomeAcessorios = "'. $string_array .'";</script>';
 
 
             echo $this->Form->control('solicitante_id', array('type' => 'select', 'label' => 'Selecione o Solicitante', 'options' => $solicitantes ));
 
-            echo $this->Form->control('equipamento_id', array('type' => 'select', 'default'=>'13', 'onChange'=>'pegarValores()', 'label' => 'Selecione o Equipamento', 'options' => $equipamentos ));
+            //echo $this->Form->control('password');
+
+            echo $this->Form->control('equipamento_id', array('type' => 'select', 'default'=>'13', 'onChange'=>'register()', 'label' => 'Selecione o Equipamento', 'options' => $equipamentos ));
 
             echo $this->Form->control('atendente_id', array('type' => 'hidden', 'value'=> $idLogado));
       
@@ -60,7 +50,7 @@
 
 <!-- Trigger the modal with a button -->
 
- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Mais Acessórios</button> 
+ <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Mais Acessórios</button> 
 
 <!-- Modal -->
  <div id="myModal" class="modal fade" role="dialog">
@@ -76,7 +66,7 @@
 
         <?php
 
-            echo $this->Form->input('acessorios._ids', array('label' => false, 'div' => false,'type' => 'select','multiple'=>'checkbox','legend' => 'false'));
+            //echo $this->Form->input('acessorios._ids', array('label' => false, 'div' => false,'type' => 'select','multiple'=>'checkbox','legend' => 'false'));
         ?>
 
       </div>
@@ -93,6 +83,8 @@
     <?= $this->Form->button(__('Emprestar')) ?>
     <?= $this->Form->end() ?>
 
+
+
 </div>
 
 <script type="text/javascript">
@@ -100,7 +92,7 @@
      function pegarValores(){
         var valor = $('#equipamento-id').val();  
         var ValorA = document.getElementById("equipamento-id").value;    
-        alert(ValorA);
+        //alert(ValorA);
 
          var data = $('#data_json').val();
 
@@ -112,7 +104,18 @@
 
         var var4 = valor;
 
+        $.ajax({
+      type: "POST",
+      data: {valor: 'valor'} ,
+      url: "add.ctp",
+      success: function(resposta){
+          alert(resposta);
+      }  
+    }); 
+
         $('.selectAcess').empty();
         $('.selectAcess').prepend(valor);
  }
+
  </script>
+

@@ -19,14 +19,15 @@ class EmprestimosController extends AppController
      * @return \Cake\Network\Response|null
      */
 
-    public function index()
+    public function index()     //Lista apenas os empréstimos pendentes
     {
         $this->paginate = [
             'contain' => ['Equipamentos', 'Usuarios', 'Solicitantes']
         ];
 
        $pendentes = $this->Emprestimos->find('all', array(
-        'conditions' => array('Emprestimos.situacao' => 'Pendente')
+        'conditions' => array('Emprestimos.situacao' => 'Pendente'),
+        'order' => array('Emprestimos.dataRetirada' => 'desc')
     ));
 
      $this->set('pendentes', $this->paginate($pendentes));
@@ -35,13 +36,15 @@ class EmprestimosController extends AppController
         $this->set('_serialize', ['emprestimos']);
     }
 
-       public function finalizados()
+
+       public function finalizados()    //Lista apenas os empréstimos finalizados
     {
         $this->paginate = [
             'contain' => ['Equipamentos', 'Usuarios', 'Solicitantes']
         ];
     $devolvidos = $this->Emprestimos->find('all', array(
-        'conditions' => array('Emprestimos.situacao' => 'Devolvido')
+        'conditions' => array('Emprestimos.situacao' => 'Devolvido'),
+        'order' => array('Emprestimos.dataDevolucao' => 'desc')
     ));
 
      $this->set('devolvidos', $this->paginate($devolvidos));
@@ -60,8 +63,6 @@ class EmprestimosController extends AppController
 return false;
 }
 
- 
-
     /**
      * View method
      *
@@ -76,11 +77,9 @@ return false;
         ]);
 
     // //Busca o nome do responsável pelo ID
-        $resp = $this->Emprestimos->Usuarios->findById($emprestimo->responsavel_id);
-        foreach ($resp as $responsavel) {
-        }            
-
-            
+        $resp = $this->Emprestimos->Usuarios->findById($emprestimo->responsavel_id);        
+        $responsavel = $resp->first();
+       
         $this->set(compact('emprestimo', 'responsavel'));
         $this->set('_serialize', ['emprestimo']);
     }
@@ -92,25 +91,25 @@ return false;
      */
 
     public function finish($id = null){
+
         $emprestimo = $this->Emprestimos->get($id, [
             'contain' => ['Acessorios', 'Usuarios']
         ]);
+
+            //Busca o solicitante pelo ID
+            $solic = $this->Emprestimos->Solicitantes->findById($emprestimo->solicitante_id);
+            $solicitante = $solic->first();
+
+            //Busca o equipamento pelo ID
+            $equip = $this->Emprestimos->Equipamentos->findById($emprestimo->equipamento_id);
+            $equipamento = $equip->first();
+
+
         if ($this->request->is(['patch', 'post', 'put'])  && $emprestimo->situacao == 'Pendente') {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
             if ($this->Emprestimos->save($emprestimo)) {
 
-            $solic = $this->Emprestimos->Solicitantes->findById($emprestimo->solicitante_id);
-            foreach ($solic as $solicitante) {
-            }
-
-            $equip = $this->Emprestimos->Equipamentos->findById($emprestimo->equipamento_id);
-            foreach ($equip as $equipamento) {
-            }
-            
-            $acess = $this->Emprestimos->Acessorios->findById($emprestimo->emprestimo_id);
-            foreach ($acess as $acessorio) {
-            }
-
+           //Envia email ao solicitante
             $this->getMailer('Emprestimo')->send('receber', [$emprestimo, $solicitante, $equipamento]);
 
                 $this->Flash->success(__('Empréstimo finalizado com sucesso.'));
@@ -119,14 +118,12 @@ return false;
             }
             $this->Flash->error(__('O emprestimo não pôde ser finalizado. Por favor, tente novamente.'));
         }
-        $this->set(compact('emprestimo'));
+        $this->set(compact('emprestimo', 'solicitante'));
         $this->set('_serialize', ['emprestimo']);
     }
 
     public function add()
     {
-        //$test_var= $this->request['pass'];
-        //echo $test_var;
         $emprestimo = $this->Emprestimos->newEntity();
         if ($this->request->is('post')) {
             $emprestimo = $this->Emprestimos->patchEntity($emprestimo, $this->request->getData());
@@ -134,18 +131,15 @@ return false;
             //$eq = $this->Emprestimos->Equipamentos->get($this->request->data['equipamento_id']);
             if ($this->Emprestimos->save($emprestimo)) {
 
+            //Busca o solicitante pelo ID
             $solic = $this->Emprestimos->Solicitantes->findById($emprestimo->solicitante_id);
-            foreach ($solic as $solicitante) {
-            }
+            $solicitante = $solic->first();
 
+            //Busca o equipamento pelo ID
             $equip = $this->Emprestimos->Equipamentos->findById($emprestimo->equipamento_id);
-            foreach ($equip as $equipamento) {
-            }
+            $equipamento = $equip->first();
             
-            $acess = $this->Emprestimos->Acessorios->findById($emprestimo->emprestimo_id);
-            foreach ($acess as $acessorio) {
-            }
-
+            //Envia email ao solicitante
             $this->getMailer('Emprestimo')->send('emprestar', [$emprestimo, $solicitante, $equipamento]);
                
                 $this->Flash->success(__('Empréstimo salvo com sucesso.'));
@@ -156,10 +150,6 @@ return false;
         }
 
         $acessorios = $this->Emprestimos->Acessorios->find('list', ['limit' => 200]);
-
-        $js_array = json_encode($acessorios);
-            echo "<script>var javascript_array = ". $js_array . ";\n</script>";
-
         $solicitantes = $this->Emprestimos->Solicitantes->find('list', ['limit' => 200]);
         $equipamentos = $this->Emprestimos->Equipamentos->find('list', ['limit' => 200]);
         $usuarios = $this->Emprestimos->Usuarios->find('list', ['limit' => 200]);
@@ -205,11 +195,20 @@ return false;
     {
         $this->request->allowMethod(['post', 'delete']);
         $emprestimo = $this->Emprestimos->get($id);
-        if ($this->Emprestimos->delete($emprestimo)) {
+
+        $ocorrencia = $this->Emprestimos->Ocorrencias->find('all', array(
+        'conditions' => array('Ocorrencias.idEmprestimo' => $id)));
+        foreach ($ocorrencia as $ocorrencia2) {
+            if ($this->Emprestimos->Ocorrencias->delete($ocorrencia2)) {
+                $this->Flash->success(__('Ocorrência '. $ocorrencia2->id . ' excluída.'));
+                }
+            }
+        
+            if ($this->Emprestimos->delete($emprestimo)) {
             $this->Flash->success(__('Empréstimo excluído com sucesso.'));
-        } else {
+       } else {
             $this->Flash->error(__('O empréstimo não pôde ser excluído. Por favor, tente novamente.'));
-        }
+         }
 
         return $this->redirect(['action' => 'index']);
     }

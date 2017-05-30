@@ -89,6 +89,8 @@ class SolicitantesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['matricula']));
+        $rules->add($rules->isUnique(['cpf']));
 
         return $rules;
     }
