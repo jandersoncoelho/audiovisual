@@ -22,7 +22,7 @@
 
             //echo $this->Form->control('password');
 
-            echo $this->Form->control('equipamento_id', array('type' => 'select', 'default'=>'13', 'onChange'=>'register()', 'label' => 'Selecione o Equipamento', 'options' => $equipamentos ));
+            echo $this->Form->control('equipamento_id', array('type' => 'select', 'default'=>'13', 'onChange'=>'pegarValores()', 'label' => 'Selecione o Equipamento', 'options' => $equipamentos ));
 
             echo $this->Form->control('atendente_id', array('type' => 'hidden', 'value'=> $idLogado));
       
@@ -31,6 +31,7 @@
             date_default_timezone_set('America/Sao_Paulo');
             $dataRetirada = date('Y-m-d H:i');
             echo $this->Form->control('dataRetirada', array('type' => 'hidden', 'value'=> $dataRetirada));
+
 
             ?>
             
@@ -46,6 +47,13 @@
              echo $this->Form->input('acessorios._ids', array('label' => false, 'div' => false,'type' => 'select','multiple'=>'checkbox','legend' => 'false'));
         ?>
     </fieldset>
+
+    <?php
+
+    echo $this->Form->control('periodoEmail', array('label' => 'Período ao enviar Emails', 'placeholder' => 'Informe o período em dias'));
+
+    echo $this->Form->control('mensagemEmail', array('type' => 'textarea', 'label' => 'Incluir Mensagem no Email (Opcional)'));
+    ?>
 
 
 <!-- Trigger the modal with a button -->

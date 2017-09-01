@@ -29,6 +29,8 @@ foreach ($content as $line):
 
 	
 	echo "\n<p> Data de retirada: " . date('d/m/Y H:i', strtotime($dataRetirada)) . "</p>\n";
+	echo '<p>'. $mensagemEmail . "</p>\n";
+
 	echo "<p> Por favor devolva o equipamento à T.I. assim que possível. </p>\n\n";
 	echo "<p> Instituto Federal de Educação, Ciência e Tecnologia do Triângulo Mineiro </p>\n";
 endforeach;

@@ -25,7 +25,8 @@ class EmprestimoMailer extends Mailer
              ->layout('default')
              ->viewVars(array('dataRetirada' => $emprestimo->dataRetirada,
               'nome' => $solicitante->nome, 'numeroPatrimonio' => $equipamento->numeroPatrimonio,
-              'nomeEquipamento' => $equipamento->nome, 'acessorios' => $emprestimo->acessorios
+              'nomeEquipamento' => $equipamento->nome, 'acessorios' => $emprestimo->acessorios,
+              'mensagemEmail' => $emprestimo->mensagemEmail
               ))
              ->subject(sprintf('Você acabou de realizar um empréstimo.'));
     }

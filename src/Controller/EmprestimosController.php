@@ -36,6 +36,21 @@ class EmprestimosController extends AppController
         $this->set('_serialize', ['emprestimos']);
     }
 
+    public function rotinaEmails(){
+
+         $pendentes = $this->Emprestimos->find('all', array(
+        'conditions' => array('Emprestimos.situacao' => 'Pendente')
+    ));
+
+         foreach ($pendentes as $pendente) {
+             //if ($pendente->periodoEmail ) {
+                 
+            // }
+         }
+
+
+    }
+
 
        public function finalizados()    //Lista apenas os empréstimos finalizados
     {
@@ -140,7 +155,7 @@ return false;
             $equipamento = $equip->first();
             
             //Envia email ao solicitante
-            $this->getMailer('Emprestimo')->send('emprestar', [$emprestimo, $solicitante, $equipamento]);
+            //$this->getMailer('Emprestimo')->send('emprestar', [$emprestimo, $solicitante, $equipamento]);
                
                 $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
