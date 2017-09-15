@@ -48,9 +48,9 @@ CREATE TABLE `emprestimos` (
   `equipamento_id` int(11) NOT NULL,
   `atendente_id` int(11) NOT NULL,
   `solicitante_id` int(11) NOT NULL,
-  `responsavel_id` int(11) NOT NULL,
-  `periodoEmail` int(11) NOT NULL,
-  `mensagemEmail` text NOT NULL
+  `responsavel_id` int(11),
+  `periodoEmail` int(11),
+  `mensagemEmail` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

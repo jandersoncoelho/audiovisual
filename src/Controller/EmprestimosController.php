@@ -155,7 +155,7 @@ return false;
             $equipamento = $equip->first();
             
             //Envia email ao solicitante
-            //$this->getMailer('Emprestimo')->send('emprestar', [$emprestimo, $solicitante, $equipamento]);
+            $this->getMailer('Emprestimo')->send('emprestar', [$emprestimo, $solicitante, $equipamento]);
                
                 $this->Flash->success(__('Empréstimo salvo com sucesso.'));
 
