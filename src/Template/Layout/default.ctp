@@ -24,25 +24,15 @@ $cakeDescription = 'Audiovisual';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
-    
-    <?= $this->Html->script('jquery-1.10.2') ?>  
-    <?= $this->Html->script('bootstrap.min') ?>
-    <?= $this->Html->css('boot') ?>
 
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
-    
-    
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 <body>

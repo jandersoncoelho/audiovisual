@@ -14,6 +14,6 @@
             echo $this->Form->control('providenciaTomada', array('label' => 'Providência Tomada'));
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Salvar')) ?>
     <?= $this->Form->end() ?>
 </div>

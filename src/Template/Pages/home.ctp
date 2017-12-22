@@ -40,30 +40,10 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
     <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+   
 </head>
 <body>
 
-   <!--  <div class="usuarios form large-4 medium-8 columns content">
-    <fieldset>
-        <legend><?= __('Login') ?></legend>
-        
-        <?= $this->Form->create() ?>
-        <?= $this->Form->input('email') ?>
-        <?= $this->Form->input('password') ?>
-        <?= $this->Form->button('Login') ?>
-        <?= $this->Form->end() ?>
-
-    </fieldset>
-
-    <?= $this->Html->image('logo.png', array('alt' => 'CakePHP', 'border' => '0', 'width'=> '200')) ?>
-
-  
-</div> -->
-
-<h3>Para logar acesse:</h3>
-<?= $this->Html->link('    localhost:8765/usuarios/login', 'http://localhost:8765/usuarios/login');
- ?>
 
 </body>
 </html>
